@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — Response Ready AI</title>
+  <meta name="description" content="Response Ready AI's privacy policy explains what information we collect, how we use it, and your choices — including our SMS messaging program." />
+  <link rel="canonical" href="https://responsereadyai.com/privacy" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    /* ─── Reset & Base ─────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: #fdfaf6;
+      color: #1a1612;
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── Variables ─────────────────────────────────────────────── */
+    :root {
+      --accent: #ec9513;
+      --accent-dark: #c07b10;
+      --accent-light: #fdf3e3;
+      --dark: #1a1612;
+      --dark-2: #2c2015;
+      --dark-3: #3d2e1e;
+      --gray: #7a6e63;
+      --gray-light: #f5f0e8;
+      --gray-mid: #e8dfd0;
+      --white: #fdfaf6;
+      --radius: 12px;
+      --radius-lg: 20px;
+      --shadow: 0 4px 24px rgba(0,0,0,0.08);
+      --shadow-lg: 0 16px 48px rgba(0,0,0,0.14);
+    }
+
+    /* ─── Utility ───────────────────────────────────────────────── */
+    .container { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+    .container--narrow { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+
+    /* ─── Buttons ───────────────────────────────────────────────── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      padding: 14px 28px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+    .btn-primary:hover { background: var(--accent-dark); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(236,149,19,0.3); }
+    .btn-sm { font-size: 13px; padding: 10px 20px; }
+
+    /* ─── Navigation ────────────────────────────────────────────── */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(11,17,32,0.95);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 1px 0 rgba(255,255,255,0.08);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 68px;
+    }
+    .nav-logo {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--white);
+      text-decoration: none;
+      letter-spacing: -0.5px;
+    }
+    .nav-logo span { color: var(--accent); }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-cta { margin-left: 16px; }
+
+    /* ─── Page Header ───────────────────────────────────────────── */
+    .page-header {
+      background: var(--dark);
+      padding: 120px 0 64px;
+      position: relative;
+      overflow: hidden;
+    }
+    .page-header::before {
+      content: '';
+      position: absolute;
+      top: -200px; left: 50%;
+      transform: translateX(-50%);
+      width: 800px; height: 800px;
+      background: radial-gradient(circle, rgba(236,149,19,0.1) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .page-header-inner {
+      position: relative;
+      z-index: 1;
+    }
+    .page-tag {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: rgba(236,149,19,0.1);
+      border: 1px solid rgba(236,149,19,0.2);
+      padding: 4px 12px;
+      border-radius: 100px;
+      margin-bottom: 20px;
+    }
+    .page-header h1 {
+      font-size: clamp(32px, 5vw, 52px);
+      font-weight: 900;
+      letter-spacing: -2px;
+      line-height: 1.1;
+      color: var(--white);
+      margin-bottom: 16px;
+    }
+    .page-header-meta {
+      font-size: 14px;
+      color: rgba(255,255,255,0.4);
+    }
+
+    /* ─── Document Body ─────────────────────────────────────────── */
+    .doc-body {
+      padding: 72px 0 96px;
+    }
+    .doc-content {
+      font-size: 16px;
+      color: #3d2e1e;
+      line-height: 1.8;
+    }
+    .doc-content h2 {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--dark-2);
+      letter-spacing: -0.5px;
+      margin-top: 48px;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--gray-mid);
+    }
+    .doc-content h2:first-of-type {
+      margin-top: 0;
+    }
+    .doc-content p {
+      margin-bottom: 16px;
+    }
+    .doc-content p:last-child {
+      margin-bottom: 0;
+    }
+    .doc-content ul {
+      margin: 12px 0 16px 24px;
+    }
+    .doc-content ul li {
+      margin-bottom: 8px;
+      line-height: 1.7;
+    }
+    .doc-content strong {
+      color: var(--dark-2);
+      font-weight: 600;
+    }
+    .doc-content a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .doc-content a:hover {
+      text-decoration: underline;
+    }
+    .doc-notice {
+      background: var(--accent-light);
+      border: 1px solid rgba(236,149,19,0.25);
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      margin-bottom: 40px;
+      font-size: 15px;
+      color: var(--dark-3);
+      line-height: 1.7;
+    }
+    .doc-notice strong {
+      color: var(--dark-2);
+    }
+    .doc-contact {
+      background: var(--gray-light);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      border: 1px solid var(--gray-mid);
+      margin-top: 48px;
+    }
+    .doc-contact h2 {
+      border-bottom: none;
+      margin-top: 0;
+      padding-bottom: 0;
+      margin-bottom: 16px;
+    }
+    .doc-contact p {
+      margin-bottom: 8px;
+      font-size: 15px;
+    }
+
+    /* ─── Footer ────────────────────────────────────────────────── */
+    footer {
+      background: #120e0a;
+      padding: 72px 0 32px;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 48px;
+      margin-bottom: 40px;
+    }
+    .footer-brand .logo {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -0.5px;
+      margin-bottom: 14px;
+    }
+    .footer-brand .logo span { color: var(--accent); }
+    .footer-brand p { font-size: 14px; color: rgba(255,255,255,0.35); line-height: 1.7; margin-bottom: 16px; }
+    .footer-contact { font-size: 13px; color: rgba(255,255,255,0.3); line-height: 2; }
+    .footer-contact a { color: rgba(255,255,255,0.45); text-decoration: none; }
+    .footer-bottom {
+      padding-top: 24px;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .footer-bottom p { font-size: 13px; color: rgba(255,255,255,0.25); }
+    .footer-legal {
+      display: flex;
+      gap: 20px;
+    }
+    .footer-legal a { font-size: 13px; color: rgba(255,255,255,0.25); text-decoration: none; }
+    .footer-legal a:hover { color: rgba(255,255,255,0.5); }
+    .footer-dba {
+      font-size: 12px;
+      color: rgba(255,255,255,0.2);
+      margin-top: 8px;
+    }
+
+    /* ─── Responsive ────────────────────────────────────────────── */
+    @media (max-width: 680px) {
+      .nav-links, .nav-cta { display: none; }
+      .doc-body { padding: 48px 0 72px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── NAV ────────────────────────────────────────────────────── -->
+<nav class="nav" id="nav">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">Response<span>Ready</span> AI</a>
+      <ul class="nav-links">
+        <li><a href="index.html#features">Features</a></li>
+        <li><a href="index.html#capabilities">Capabilities</a></li>
+        <li><a href="index.html#faq">FAQ</a></li>
+        <li><a href="index.html#demo">Demo</a></li>
+      </ul>
+      <a href="index.html#book" class="btn btn-primary btn-sm nav-cta">Book a Discovery Call</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ─── PAGE HEADER ─────────────────────────────────────────────── -->
+<div class="page-header">
+  <div class="container container--narrow">
+    <div class="page-header-inner">
+      <div class="page-tag">Legal</div>
+      <h1>Privacy Policy</h1>
+      <p class="page-header-meta">Last updated: April 17, 2026</p>
+    </div>
+  </div>
+</div>
+
+<!-- ─── DOCUMENT BODY ───────────────────────────────────────────── -->
+<main class="doc-body">
+  <div class="container container--narrow">
+    <div class="doc-notice">
+      Response Ready AI ("Response Ready AI," "we," "us," or "our") builds AI phone and chat agents for use by our business clients. This Privacy Policy explains what information we collect, how we use it, and the choices you have. It covers our website at responseready.ai, our phone and SMS communications, and any related services we provide.
+    </div>
+
+    <div class="doc-content">
+
+      <h2>1. Information We Collect</h2>
+      <p>We collect information in the following ways:</p>
+      <p><strong>Information you provide directly.</strong> When you contact us, request a demo, sign up for our service, or speak with our AI agent, we may collect your name, business name, email address, phone number, and the content of your conversation with us (including call audio, transcripts, and text messages).</p>
+      <p><strong>Information collected automatically.</strong> When you use responseready.ai, we may collect standard log information such as IP address, browser type, pages visited, and referring URLs through cookies and similar technologies.</p>
+      <p><strong>Information from calls and texts.</strong> When you call or text +1 (833) 229-2529, we collect your phone number, the date and time of the communication, the content of your messages, and (for calls) a recording and/or transcript of the call for quality, training, and service-delivery purposes.</p>
+
+      <h2>2. How We Use Your Information</h2>
+      <p>We use the information we collect to:</p>
+      <ul>
+        <li>Respond to your inquiries and provide the services you've requested.</li>
+        <li>Send you follow-ups after a call, appointment reminders and confirmations, account and service notifications, and two-way conversational replies via SMS — only after you have opted in.</li>
+        <li>Operate, maintain, and improve our AI phone and chat agent services.</li>
+        <li>Train and improve our models using aggregated or de-identified data where permitted.</li>
+        <li>Comply with legal obligations, enforce our terms, and protect the rights and safety of Response Ready AI, our clients, and the public.</li>
+      </ul>
+
+      <h2>3. SMS / Text Messaging Program</h2>
+      <p>When you verbally opt in during a phone call to +1 (833) 229-2529, or opt in through our website or a reply of "START," we may send you text messages from that number. Message types include follow-ups after a call, appointment reminders and confirmations, account or service notifications, and replies to your own texts. Message frequency varies and is typically occasional — only when there is something relevant to share. Message and data rates may apply. Reply <strong>HELP</strong> for help or <strong>STOP</strong> to unsubscribe at any time. You can also email support@responseready.ai to be removed.</p>
+      <p>For details on how we obtain verbal consent before sending SMS, including the exact script read during inbound calls, see our <a href="sms-consent.html">SMS Consent &amp; Messaging Policy</a>.</p>
+      <p><strong>No mobile information sharing.</strong> No mobile information (including your phone number and any associated opt-in data) will be shared with third parties or affiliates for marketing or promotional purposes. Information sharing with subprocessors described in Section 4 (such as our messaging platform) is limited to what is necessary to deliver the service you have requested, and those subprocessors are contractually prohibited from using your mobile information for their own marketing.</p>
+
+      <h2>4. How We Share Information</h2>
+      <p>We do not sell your personal information. We share information only as follows:</p>
+      <p><strong>Service providers (subprocessors).</strong> We use trusted vendors to operate our service, including Twilio (telephony and messaging), our hosting and analytics providers, and our email provider. These vendors access information only as needed to perform services for us and are bound by confidentiality and data-protection obligations.</p>
+      <p><strong>Our business clients.</strong> If you contacted or were contacted by an AI agent that Response Ready AI built and operates on behalf of one of our business clients, the content of that conversation may be shared with that client, who is the party you intended to communicate with.</p>
+      <p><strong>Legal and safety.</strong> We may disclose information when required by law, subpoena, or court order, or when we believe in good faith that disclosure is necessary to protect rights, property, or safety.</p>
+      <p><strong>Business transfers.</strong> If Response Ready AI is involved in a merger, acquisition, or asset sale, information may be transferred as part of that transaction, subject to this Privacy Policy.</p>
+
+      <h2>5. Your Choices</h2>
+      <p>You may:</p>
+      <ul>
+        <li>Opt out of SMS messages at any time by replying <strong>STOP</strong> to any message from us, or by emailing support@responseready.ai.</li>
+        <li>Request access to, correction of, or deletion of the personal information we hold about you by emailing support@responseready.ai.</li>
+        <li>Disable cookies through your browser settings (some site features may not work as intended).</li>
+      </ul>
+      <p>Depending on where you live, you may have additional rights under laws such as the California Consumer Privacy Act (CCPA) or the EU/UK General Data Protection Regulation (GDPR), including the right to know, delete, correct, and not be discriminated against for exercising those rights. To make a request, contact us at the address below.</p>
+
+      <h2>6. Data Retention</h2>
+      <p>We retain personal information for as long as necessary to provide our services, comply with legal obligations, resolve disputes, and enforce agreements. SMS opt-in records are retained for a minimum of four years as required by messaging compliance rules.</p>
+
+      <h2>7. Security</h2>
+      <p>We use reasonable administrative, technical, and physical safeguards to protect the information we collect. No system is perfectly secure, and we cannot guarantee absolute security.</p>
+
+      <h2>8. Children's Privacy</h2>
+      <p>Our services are not directed to children under 13, and we do not knowingly collect personal information from children under 13. If you believe we have collected such information, please contact us and we will delete it.</p>
+
+      <h2>9. Changes to This Policy</h2>
+      <p>We may update this Privacy Policy from time to time. Material changes will be posted on this page with an updated "Last updated" date. Continued use of our services after an update constitutes acceptance of the revised policy.</p>
+
+      <div class="doc-contact">
+        <h2>10. Contact Us</h2>
+        <p><strong>Response Ready AI</strong></p>
+        <p>Email: <a href="mailto:support@responseready.ai">support@responseready.ai</a></p>
+        <p>Website: <a href="https://responsereadyai.com">responsereadyai.com</a></p>
+        <p>Phone/SMS: +1 (833) 229-2529</p>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<!-- ─── FOOTER ───────────────────────────────────────────────────── -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo">Response<span>Ready</span> AI</div>
+        <p>AI voice agents that answer every call, book every appointment, and capture every lead — so small businesses stop losing revenue to voicemail.</p>
+        <div class="footer-contact">
+          <div>📧 <a href="mailto:support@responseready.ai">support@responseready.ai</a></div>
+          <div>📍 United States · Remote Service</div>
+        </div>
+        <div class="footer-dba">ResponseReady AI is a registered DBA · Registered Business</div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Response Ready AI. All rights reserved.</p>
+      <div class="footer-legal">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="sms-consent.html">SMS Consent &amp; Messaging Policy</a>
+        <a href="terms.html">Terms of Service</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

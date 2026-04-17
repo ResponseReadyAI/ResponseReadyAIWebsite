@@ -1,0 +1,1690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ResponseReady AI | AI Voice Agent for Small Business — Never Miss a Call</title>
+  <meta name="description" content="ResponseReady AI handles every business call 24/7 — answering FAQs, booking appointments, and capturing leads automatically. Book a free strategy call today." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    /* ─── Reset & Base ─────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: #fdfaf6;
+      color: #1a1612;
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── Variables ─────────────────────────────────────────────── */
+    :root {
+      --accent: #ec9513;
+      --accent-dark: #c07b10;
+      --accent-light: #fdf3e3;
+      --dark: #1a1612;
+      --dark-2: #2c2015;
+      --dark-3: #3d2e1e;
+      --gray: #7a6e63;
+      --gray-light: #f5f0e8;
+      --gray-mid: #e8dfd0;
+      --white: #fdfaf6;
+      --radius: 12px;
+      --radius-lg: 20px;
+      --shadow: 0 4px 24px rgba(0,0,0,0.08);
+      --shadow-lg: 0 16px 48px rgba(0,0,0,0.14);
+    }
+
+    /* ─── Organic Blobs ─────────────────────────────────────────── */
+    .blob {
+      position: absolute;
+      border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
+      opacity: 0.18;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .blob-2 {
+      border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    }
+    .blob-accent {
+      background: var(--accent);
+    }
+    .blob-warm {
+      background: #f5a623;
+    }
+
+    /* ─── Utility ───────────────────────────────────────────────── */
+    .container { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+    .container--narrow { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+    .text-accent { color: var(--accent); }
+    .text-gray { color: var(--gray); }
+    .tag {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-light);
+      padding: 4px 12px;
+      border-radius: 100px;
+      margin-bottom: 16px;
+    }
+
+    /* ─── Buttons ───────────────────────────────────────────────── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      padding: 14px 28px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+    .btn-primary:hover { background: var(--accent-dark); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(236,149,19,0.3); }
+    .btn-outline {
+      background: transparent;
+      color: var(--white);
+      border: 1.5px solid rgba(255,255,255,0.3);
+    }
+    .btn-outline:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.6); }
+    .btn-outline-dark {
+      background: transparent;
+      color: var(--dark-2);
+      border: 1.5px solid var(--gray-mid);
+    }
+    .btn-outline-dark:hover { border-color: var(--accent); color: var(--accent); }
+    .btn-lg { font-size: 17px; padding: 18px 36px; border-radius: 10px; }
+    .btn-sm { font-size: 13px; padding: 10px 20px; }
+
+    /* ─── Navigation ────────────────────────────────────────────── */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+    }
+    .nav.scrolled {
+      background: rgba(11,17,32,0.95);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 1px 0 rgba(255,255,255,0.08);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 68px;
+    }
+    .nav-logo {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--white);
+      text-decoration: none;
+      letter-spacing: -0.5px;
+    }
+    .nav-logo span { color: var(--accent); }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-cta { margin-left: 16px; }
+
+    /* ─── Hero ──────────────────────────────────────────────────── */
+    .hero {
+      background: var(--dark);
+      padding: 140px 0 80px;
+      overflow: hidden;
+      position: relative;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -200px; left: 50%;
+      transform: translateX(-50%);
+      width: 900px; height: 900px;
+      background: radial-gradient(circle, rgba(236,149,19,0.12) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--accent);
+      background: rgba(236,149,19,0.1);
+      border: 1px solid rgba(236,149,19,0.2);
+      padding: 6px 14px;
+      border-radius: 100px;
+      margin-bottom: 24px;
+    }
+    .hero-badge::before { content: '●'; font-size: 8px; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+    .hero h1 {
+      font-size: clamp(38px, 5vw, 64px);
+      font-weight: 900;
+      line-height: 1.08;
+      letter-spacing: -2px;
+      color: var(--white);
+      margin-bottom: 20px;
+    }
+    .hero h1 em { font-style: normal; color: var(--accent); }
+    .hero-sub {
+      font-size: 18px;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.6;
+      margin-bottom: 36px;
+      max-width: 480px;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .hero-note {
+      margin-top: 16px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.35);
+    }
+    .hero-note strong { color: rgba(255,255,255,0.55); }
+
+    /* Hero Visual */
+    .hero-visual {
+      position: relative;
+    }
+    .phone-mockup {
+      background: #231c13;
+      border-radius: 24px;
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 24px;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.06);
+      position: relative;
+    }
+    .phone-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+    .phone-avatar {
+      width: 40px; height: 40px;
+      background: linear-gradient(135deg, var(--accent), #f5a623);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+    }
+    .phone-header-text .name { font-size: 14px; font-weight: 600; color: var(--white); }
+    .phone-header-text .status { font-size: 12px; color: var(--accent); }
+    .phone-status-dot {
+      width: 8px; height: 8px;
+      background: var(--accent);
+      border-radius: 50%;
+      margin-left: auto;
+      box-shadow: 0 0 8px var(--accent);
+    }
+    .chat-bubble {
+      padding: 12px 16px;
+      border-radius: 12px;
+      font-size: 14px;
+      line-height: 1.5;
+      max-width: 85%;
+      margin-bottom: 10px;
+    }
+    .chat-bubble.agent {
+      background: rgba(236,149,19,0.12);
+      border: 1px solid rgba(236,149,19,0.2);
+      color: rgba(255,255,255,0.9);
+      border-radius: 4px 12px 12px 12px;
+    }
+    .chat-bubble.user {
+      background: rgba(255,255,255,0.07);
+      color: rgba(255,255,255,0.7);
+      border-radius: 12px 4px 12px 12px;
+      margin-left: auto;
+    }
+    .chat-time { font-size: 11px; color: rgba(255,255,255,0.3); margin-bottom: 6px; }
+    .waveform {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      height: 32px;
+      margin: 16px 0;
+      padding: 0 4px;
+    }
+    .wave-bar {
+      flex: 1;
+      background: var(--accent);
+      border-radius: 2px;
+      opacity: 0.7;
+      animation: wave 1.2s ease-in-out infinite;
+    }
+    .wave-bar:nth-child(2) { animation-delay: 0.1s; }
+    .wave-bar:nth-child(3) { animation-delay: 0.2s; }
+    .wave-bar:nth-child(4) { animation-delay: 0.3s; }
+    .wave-bar:nth-child(5) { animation-delay: 0.4s; }
+    .wave-bar:nth-child(6) { animation-delay: 0.5s; }
+    .wave-bar:nth-child(7) { animation-delay: 0.6s; }
+    .wave-bar:nth-child(8) { animation-delay: 0.5s; }
+    .wave-bar:nth-child(9) { animation-delay: 0.4s; }
+    .wave-bar:nth-child(10) { animation-delay: 0.3s; }
+    .wave-bar:nth-child(11) { animation-delay: 0.2s; }
+    .wave-bar:nth-child(12) { animation-delay: 0.1s; }
+    @keyframes wave {
+      0%, 100% { height: 4px; }
+      50% { height: 24px; }
+    }
+    .phone-booking {
+      background: rgba(236,149,19,0.08);
+      border: 1px solid rgba(236,149,19,0.2);
+      border-radius: 10px;
+      padding: 12px 14px;
+      margin-top: 14px;
+    }
+    .phone-booking .booking-label { font-size: 11px; color: var(--accent); font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 6px; }
+    .phone-booking .booking-value { font-size: 14px; color: var(--white); font-weight: 600; }
+    .phone-booking .booking-sub { font-size: 12px; color: rgba(255,255,255,0.45); margin-top: 2px; }
+    .hero-float-badge {
+      position: absolute;
+      background: var(--white);
+      border-radius: 12px;
+      padding: 10px 14px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--dark-2);
+    }
+    .hero-float-badge.top-right {
+      top: -20px; right: -20px;
+    }
+    .hero-float-badge.bottom-left {
+      bottom: -16px; left: -16px;
+    }
+    .float-icon {
+      width: 34px; height: 34px;
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+    }
+    .float-icon.green { background: #fdf3e3; }
+    .float-icon.blue { background: #fef9f0; }
+
+    /* ─── Stats Strip ───────────────────────────────────────────── */
+    .stats-strip {
+      background: var(--dark-2);
+      padding: 24px 0;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .stats-strip-inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      flex-wrap: wrap;
+    }
+    .stat-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 32px;
+      border-right: 1px solid rgba(255,255,255,0.08);
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-icon { font-size: 18px; }
+    .stat-text { font-size: 14px; color: rgba(255,255,255,0.55); }
+    .stat-text strong { color: var(--white); }
+
+    /* ─── Section Defaults ──────────────────────────────────────── */
+    section { padding: 96px 0; }
+    .section-header { text-align: center; margin-bottom: 60px; }
+    .section-header h2 {
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 800;
+      letter-spacing: -1.5px;
+      line-height: 1.15;
+      color: var(--dark-2);
+      margin-bottom: 16px;
+    }
+    .section-header p {
+      font-size: 18px;
+      color: var(--gray);
+      max-width: 560px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+    .section-header.light h2 { color: var(--white); }
+    .section-header.light p { color: rgba(255,255,255,0.55); }
+
+    /* ─── Problem Section ───────────────────────────────────────── */
+    .problem { background: var(--gray-light); position: relative; overflow: hidden; }
+    .problem-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+    .problem-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      border: 1px solid var(--gray-mid);
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .problem-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-3px); }
+    .problem-icon {
+      width: 52px; height: 52px;
+      background: #FEF2F2;
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px;
+      margin-bottom: 18px;
+    }
+    .problem-card h3 { font-size: 18px; font-weight: 700; color: var(--dark-2); margin-bottom: 8px; }
+    .problem-card p { font-size: 15px; color: var(--gray); line-height: 1.6; }
+    .problem-stat {
+      display: inline-block;
+      margin-top: 12px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #EF4444;
+      background: #FEF2F2;
+      padding: 4px 10px;
+      border-radius: 6px;
+    }
+
+    /* ─── Solution Section ──────────────────────────────────────── */
+    .solution { background: var(--white); }
+    .solution-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .before-after {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .ba-card {
+      border-radius: var(--radius);
+      padding: 24px;
+    }
+    .ba-card.before {
+      background: #FFF8F6;
+      border: 1px solid #FECACA;
+    }
+    .ba-card.after {
+      background: #F0FDF9;
+      border: 1px solid #A7F3D0;
+    }
+    .ba-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .ba-card.before .ba-label { color: #EF4444; }
+    .ba-card.after .ba-label { color: var(--accent); }
+    .ba-card ul { list-style: none; }
+    .ba-card ul li {
+      font-size: 14px;
+      padding: 5px 0;
+      color: var(--gray);
+      padding-left: 20px;
+      position: relative;
+    }
+    .ba-card ul li::before { content: '•'; position: absolute; left: 0; }
+    .ba-card.before ul li::before { color: #EF4444; }
+    .ba-card.after ul li::before { color: var(--accent); }
+    .solution-content h2 {
+      font-size: clamp(28px, 3vw, 40px);
+      font-weight: 800;
+      letter-spacing: -1.5px;
+      line-height: 1.15;
+      color: var(--dark-2);
+      margin-bottom: 20px;
+    }
+    .solution-content p {
+      font-size: 17px;
+      color: var(--gray);
+      line-height: 1.7;
+      margin-bottom: 32px;
+    }
+
+    /* ─── Features ──────────────────────────────────────────────── */
+    .features { background: var(--gray-light); }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .feature-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      border: 1px solid var(--gray-mid);
+      transition: box-shadow 0.2s, transform 0.2s, border-color 0.2s;
+    }
+    .feature-card:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-4px);
+      border-color: rgba(236,149,19,0.3);
+    }
+    .feature-icon {
+      width: 52px; height: 52px;
+      background: var(--accent-light);
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    .feature-card h3 { font-size: 17px; font-weight: 700; color: var(--dark-2); margin-bottom: 10px; line-height: 1.3; }
+    .feature-card p { font-size: 14px; color: var(--gray); line-height: 1.6; }
+
+    /* ─── How It Works ──────────────────────────────────────────── */
+    .how-it-works { background: var(--dark); }
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+      position: relative;
+    }
+    .steps-grid::before {
+      content: '';
+      position: absolute;
+      top: 36px; left: calc(16.66% + 24px); right: calc(16.66% + 24px);
+      height: 1px;
+      background: linear-gradient(90deg, var(--accent) 0%, rgba(236,149,19,0.2) 100%);
+    }
+    .step {
+      text-align: center;
+      padding: 0 16px;
+    }
+    .step-number {
+      width: 72px; height: 72px;
+      background: rgba(236,149,19,0.1);
+      border: 2px solid rgba(236,149,19,0.3);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 26px;
+      font-weight: 900;
+      color: var(--accent);
+      margin: 0 auto 24px;
+      position: relative;
+      z-index: 1;
+      background: var(--dark);
+    }
+    .step h3 { font-size: 18px; font-weight: 700; color: var(--white); margin-bottom: 10px; }
+    .step p { font-size: 15px; color: rgba(255,255,255,0.5); line-height: 1.6; }
+
+    /* ─── Demo Section ──────────────────────────────────────────── */
+    .demo { background: var(--white); }
+    .demo-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .demo-copy h2 {
+      font-size: clamp(28px, 3vw, 40px);
+      font-weight: 800;
+      letter-spacing: -1.5px;
+      color: var(--dark-2);
+      margin-bottom: 16px;
+    }
+    .demo-copy p {
+      font-size: 17px;
+      color: var(--gray);
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+    .demo-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+    .demo-stat-card {
+      background: var(--gray-light);
+      border-radius: var(--radius);
+      padding: 20px;
+    }
+    .demo-stat-card .number { font-size: 32px; font-weight: 800; color: var(--dark-2); letter-spacing: -1px; }
+    .demo-stat-card .number span { color: var(--accent); }
+    .demo-stat-card .label { font-size: 13px; color: var(--gray); margin-top: 4px; }
+    .demo-widget {
+      background: var(--dark);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .demo-widget-header {
+      background: rgba(255,255,255,0.04);
+      padding: 16px 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .demo-widget-header .dot {
+      width: 10px; height: 10px;
+      background: var(--accent);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--accent);
+      animation: pulse 2s infinite;
+    }
+    .demo-widget-header .title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--white);
+    }
+    .demo-widget-header .sub {
+      font-size: 12px;
+      color: rgba(255,255,255,0.4);
+      margin-left: auto;
+    }
+    .demo-messages {
+      padding: 24px;
+      min-height: 300px;
+    }
+    .demo-msg {
+      margin-bottom: 16px;
+      animation: fadeUp 0.5s ease forwards;
+      opacity: 0;
+    }
+    .demo-msg:nth-child(1) { animation-delay: 0.3s; }
+    .demo-msg:nth-child(2) { animation-delay: 1.2s; }
+    .demo-msg:nth-child(3) { animation-delay: 2.4s; }
+    .demo-msg:nth-child(4) { animation-delay: 3.6s; }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .demo-msg .bubble {
+      display: inline-block;
+      padding: 12px 16px;
+      border-radius: 16px;
+      font-size: 14px;
+      line-height: 1.5;
+      max-width: 85%;
+    }
+    .demo-msg.agent .bubble {
+      background: rgba(236,149,19,0.12);
+      border: 1px solid rgba(236,149,19,0.2);
+      color: rgba(255,255,255,0.9);
+      border-radius: 4px 16px 16px 16px;
+    }
+    .demo-msg.visitor .bubble {
+      background: rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.7);
+      border-radius: 16px 4px 16px 16px;
+      margin-left: auto;
+      display: block;
+      text-align: right;
+    }
+    .demo-msg .sender {
+      font-size: 11px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.3);
+      margin-bottom: 6px;
+    }
+    .demo-msg.visitor .sender { text-align: right; }
+    .demo-input-bar {
+      padding: 16px 20px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      display: flex;
+      gap: 10px;
+    }
+    .demo-input {
+      flex: 1;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 13px;
+      color: var(--white);
+      font-family: inherit;
+    }
+    .demo-input::placeholder { color: rgba(255,255,255,0.25); }
+    .demo-send-btn {
+      background: var(--accent);
+      border: none;
+      border-radius: 8px;
+      padding: 10px 16px;
+      cursor: pointer;
+      color: white;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    /* ─── Founder Section ───────────────────────────────────────── */
+    .founder { background: var(--gray-light); }
+    .founder-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+    .founder-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      border: 1px solid var(--gray-mid);
+      box-shadow: var(--shadow);
+    }
+    .founder-avatar {
+      width: 80px; height: 80px;
+      background: linear-gradient(135deg, var(--accent), #f5a623);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+    .founder-card h3 { font-size: 20px; font-weight: 800; color: var(--dark-2); margin-bottom: 4px; }
+    .founder-role { font-size: 14px; color: var(--accent); font-weight: 600; margin-bottom: 16px; }
+    .founder-bio {
+      font-size: 15px;
+      color: var(--gray);
+      line-height: 1.7;
+      font-style: italic;
+    }
+    .founder-bio::before { content: '"'; font-size: 32px; color: var(--accent); line-height: 0; vertical-align: -12px; margin-right: 4px; }
+    .founding-client-card {
+      background: var(--dark);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      border: 1px solid rgba(236,149,19,0.2);
+      position: relative;
+      overflow: hidden;
+    }
+    .founding-client-card::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 200px; height: 200px;
+      background: radial-gradient(circle, rgba(236,149,19,0.15) 0%, transparent 70%);
+    }
+    .founding-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: rgba(236,149,19,0.1);
+      border: 1px solid rgba(236,149,19,0.2);
+      padding: 5px 12px;
+      border-radius: 100px;
+      margin-bottom: 20px;
+    }
+    .founding-client-card h3 {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 12px;
+      letter-spacing: -0.5px;
+    }
+    .founding-client-card p { font-size: 15px; color: rgba(255,255,255,0.55); line-height: 1.7; margin-bottom: 24px; }
+    .founding-slots {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+    .slot {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      border: 2px solid rgba(236,149,19,0.4);
+    }
+    .slot.taken { background: var(--accent); border-color: var(--accent); }
+    .slots-label { font-size: 13px; color: rgba(255,255,255,0.4); margin-top: 8px; }
+    .slots-label span { color: var(--accent); font-weight: 600; }
+
+    /* ─── Capabilities Section ──────────────────────────────────── */
+    .capabilities { background: var(--white); }
+    .capabilities-intro {
+      text-align: center;
+      max-width: 640px;
+      margin: 0 auto 56px;
+      font-size: 17px;
+      color: var(--gray);
+      line-height: 1.7;
+    }
+    .capabilities-track {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      align-items: start;
+    }
+    .cap-card {
+      background: var(--gray-light);
+      border-radius: var(--radius-lg);
+      padding: 36px;
+      border: 1.5px solid var(--gray-mid);
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .cap-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-4px); }
+    .cap-card.highlighted {
+      background: var(--dark);
+      border-color: rgba(236,149,19,0.25);
+      position: relative;
+      transform: scale(1.03);
+    }
+    .cap-card.highlighted:hover { transform: scale(1.03) translateY(-4px); }
+    .cap-highlight-badge {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--accent);
+      color: white;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 16px;
+      border-radius: 100px;
+      white-space: nowrap;
+    }
+    .cap-level {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 10px;
+    }
+    .cap-card.highlighted .cap-level { color: rgba(255,255,255,0.4); }
+    .cap-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--dark-2);
+      margin-bottom: 12px;
+      letter-spacing: -0.5px;
+      line-height: 1.2;
+    }
+    .cap-card.highlighted .cap-title { color: var(--white); }
+    .cap-desc {
+      font-size: 14px;
+      color: var(--gray);
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+    .cap-card.highlighted .cap-desc { color: rgba(255,255,255,0.5); }
+    .cap-features { list-style: none; }
+    .cap-features li {
+      display: flex;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--dark-2);
+      padding: 7px 0;
+      border-bottom: 1px solid var(--gray-mid);
+    }
+    .cap-card.highlighted .cap-features li {
+      color: rgba(255,255,255,0.8);
+      border-bottom-color: rgba(255,255,255,0.07);
+    }
+    .cap-features li:last-child { border-bottom: none; }
+    .cap-features li .check {
+      flex-shrink: 0;
+      width: 18px; height: 18px;
+      background: var(--accent-light);
+      color: var(--accent);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      margin-top: 1px;
+    }
+    .cap-card.highlighted .cap-features li .check { background: rgba(236,149,19,0.15); }
+    .cap-footer {
+      margin-top: 24px;
+      padding-top: 20px;
+      border-top: 1px solid var(--gray-mid);
+      font-size: 13px;
+      color: var(--gray);
+      font-style: italic;
+    }
+    .cap-card.highlighted .cap-footer {
+      border-top-color: rgba(255,255,255,0.07);
+      color: rgba(255,255,255,0.35);
+    }
+    .capabilities-cta {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 15px;
+      color: var(--gray);
+    }
+    .capabilities-cta a { color: var(--accent); font-weight: 600; text-decoration: none; }
+    .capabilities-cta a:hover { text-decoration: underline; }
+
+    /* ─── FAQ ───────────────────────────────────────────────────── */
+    .faq { background: var(--gray-light); }
+    .faq-list { max-width: 720px; margin: 0 auto; }
+    .faq-item {
+      background: var(--white);
+      border-radius: var(--radius);
+      border: 1px solid var(--gray-mid);
+      margin-bottom: 12px;
+      overflow: hidden;
+    }
+    .faq-question {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 22px 24px;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      font-family: inherit;
+    }
+    .faq-question-text {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--dark-2);
+      line-height: 1.4;
+    }
+    .faq-icon {
+      flex-shrink: 0;
+      width: 28px; height: 28px;
+      background: var(--gray-light);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+      color: var(--gray);
+      transition: transform 0.3s, background 0.2s;
+      font-weight: 300;
+    }
+    .faq-item.open .faq-icon {
+      transform: rotate(45deg);
+      background: var(--accent-light);
+      color: var(--accent);
+    }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.35s ease;
+    }
+    .faq-item.open .faq-answer { max-height: 500px; }
+    .faq-answer-inner {
+      padding: 0 24px 22px;
+      font-size: 15px;
+      color: var(--gray);
+      line-height: 1.7;
+    }
+
+    /* ─── Final CTA ─────────────────────────────────────────────── */
+    .final-cta {
+      background: var(--dark);
+      padding: 120px 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .final-cta::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 800px; height: 800px;
+      background: radial-gradient(circle, rgba(236,149,19,0.1) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .final-cta h2 {
+      font-size: clamp(32px, 5vw, 56px);
+      font-weight: 900;
+      color: var(--white);
+      letter-spacing: -2px;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+    .final-cta h2 em { font-style: normal; color: var(--accent); }
+    .final-cta p { font-size: 18px; color: rgba(255,255,255,0.5); margin-bottom: 40px; }
+    .final-cta-actions {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .cta-steps {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      margin-top: 48px;
+      flex-wrap: wrap;
+    }
+    .cta-step {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      color: rgba(255,255,255,0.45);
+    }
+    .cta-step-num {
+      width: 24px; height: 24px;
+      background: rgba(236,149,19,0.15);
+      border: 1px solid rgba(236,149,19,0.3);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    /* ─── Footer ────────────────────────────────────────────────── */
+    footer {
+      background: #120e0a;
+      padding: 72px 0 32px;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 48px;
+      margin-bottom: 40px;
+    }
+    .footer-brand .logo {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -0.5px;
+      margin-bottom: 14px;
+    }
+    .footer-brand .logo span { color: var(--accent); }
+    .footer-brand p { font-size: 14px; color: rgba(255,255,255,0.35); line-height: 1.7; margin-bottom: 16px; }
+    .footer-contact { font-size: 13px; color: rgba(255,255,255,0.3); line-height: 2; }
+    .footer-contact a { color: rgba(255,255,255,0.45); text-decoration: none; }
+    .footer-col h4 {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 16px;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 10px; }
+    .footer-col ul a {
+      font-size: 14px;
+      color: rgba(255,255,255,0.4);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-col ul a:hover { color: var(--white); }
+    .footer-bottom {
+      padding-top: 24px;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .footer-bottom p { font-size: 13px; color: rgba(255,255,255,0.25); }
+    .footer-legal {
+      display: flex;
+      gap: 20px;
+    }
+    .footer-legal a { font-size: 13px; color: rgba(255,255,255,0.25); text-decoration: none; }
+    .footer-legal a:hover { color: rgba(255,255,255,0.5); }
+    .footer-dba {
+      font-size: 12px;
+      color: rgba(255,255,255,0.2);
+      margin-top: 8px;
+    }
+
+    /* ─── Responsive ────────────────────────────────────────────── */
+    @media (max-width: 960px) {
+      .hero-inner,
+      .solution-grid,
+      .demo-inner,
+      .founder-inner {
+        grid-template-columns: 1fr;
+      }
+      .hero-visual { display: none; }
+      .features-grid { grid-template-columns: repeat(2, 1fr); }
+      .capabilities-track { grid-template-columns: 1fr; }
+      .cap-card.highlighted { transform: none; }
+      .cap-card.highlighted:hover { transform: translateY(-4px); }
+      .steps-grid { grid-template-columns: 1fr; gap: 32px; }
+      .steps-grid::before { display: none; }
+    }
+    @media (max-width: 680px) {
+      section { padding: 64px 0; }
+      .problem-grid,
+      .features-grid,
+      .before-after { grid-template-columns: 1fr; }
+      .nav-links, .nav-cta { display: none; }
+      .stat-item { padding: 8px 16px; }
+      .stats-strip-inner { flex-direction: column; align-items: flex-start; padding: 0 24px; gap: 8px; }
+      .stat-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); width: 100%; padding: 12px 0; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── NAV ────────────────────────────────────────────────────── -->
+<nav class="nav" id="nav">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">Response<span>Ready</span> AI</a>
+      <ul class="nav-links">
+        <li><a href="#features">Features</a></li>
+        <li><a href="#capabilities">Capabilities</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#demo">Demo</a></li>
+      </ul>
+      <a href="#book" class="btn btn-primary btn-sm nav-cta">Book a Discovery Call</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ─── HERO ────────────────────────────────────────────────────── -->
+<section class="hero">
+  <div class="blob blob-accent" style="width:500px;height:500px;top:-120px;left:-180px;"></div>
+  <div class="blob blob-2 blob-warm" style="width:360px;height:360px;bottom:-80px;right:-100px;opacity:0.12;"></div>
+  <div class="container" style="position:relative;z-index:1;">
+    <div class="hero-inner">
+      <div class="hero-content">
+        <div class="hero-badge">Live 24/7 · Zero missed calls</div>
+        <h1>Stop Losing Customers<br>to <em>Voicemail.</em></h1>
+        <p class="hero-sub">ResponseReady gives your business an AI voice agent that answers every call, books every appointment, and captures every lead — automatically, around the clock.</p>
+        <div class="hero-actions">
+          <a href="#book" class="btn btn-primary btn-lg">Book a Discovery Call →</a>
+        </div>
+        <p class="hero-note">20-minute call. <strong>No commitment. No hard sell.</strong> Just a live demo and custom plan.</p>
+      </div>
+
+      <div class="hero-visual">
+        <div class="phone-mockup">
+          <div class="phone-header">
+            <div class="phone-avatar">🤖</div>
+            <div class="phone-header-text">
+              <div class="name">ResponseReady Agent</div>
+              <div class="status">● Active · Answering calls</div>
+            </div>
+            <div class="phone-status-dot"></div>
+          </div>
+
+          <div class="chat-time">2:47 AM — Incoming call</div>
+          <div class="chat-bubble agent">"Thanks for calling Riverside Dental! I'm here to help 24/7. Are you looking to schedule an appointment, or do you have a question I can help with?"</div>
+          <div class="waveform">
+            <div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div>
+            <div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div>
+            <div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div>
+            <div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div>
+          </div>
+          <div class="chat-bubble user">"I need to book a cleaning — earliest possible."</div>
+          <div class="chat-bubble agent">"I can get you in Tuesday at 10 AM or Wednesday at 2 PM. Which works better for you?"</div>
+
+          <div class="phone-booking">
+            <div class="booking-label">✓ Appointment Booked</div>
+            <div class="booking-value">Tuesday, April 8 · 10:00 AM</div>
+            <div class="booking-sub">Confirmation SMS sent · CRM updated</div>
+          </div>
+        </div>
+
+        <div class="hero-float-badge top-right">
+          <div class="float-icon green">📞</div>
+          <div>
+            <div style="font-size:18px;font-weight:800;color:#c07b10">+$2,340</div>
+            <div style="font-size:11px;color:#6B7280;font-weight:400">revenue recovered this week</div>
+          </div>
+        </div>
+
+        <div class="hero-float-badge bottom-left">
+          <div class="float-icon blue">⏱</div>
+          <div>
+            <div style="font-size:13px;">Avg. response time</div>
+            <div style="font-size:16px;font-weight:800;color:#ec9513">&lt; 2 seconds</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── STATS STRIP ──────────────────────────────────────────────── -->
+<div class="stats-strip">
+  <div class="container">
+    <div class="stats-strip-inner">
+      <div class="stat-item">
+        <span class="stat-icon">📵</span>
+        <span class="stat-text"><strong>62%</strong> of small business calls go unanswered</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-icon">💸</span>
+        <span class="stat-text">Average business loses <strong>$450</strong> per missed call</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-icon">🔁</span>
+        <span class="stat-text"><strong>85%</strong> of callers never call back if unanswered</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-icon">🤖</span>
+        <span class="stat-text"><strong>85–95%</strong> of people can't tell it's AI</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── PROBLEM ──────────────────────────────────────────────────── -->
+<section class="problem">
+  <div class="blob blob-2 blob-accent" style="width:300px;height:300px;top:-80px;right:-60px;opacity:0.08;"></div>
+  <div class="container" style="position:relative;z-index:1;">
+    <div class="section-header">
+      <span class="tag">The Problem</span>
+      <h2>Your Phone Is Costing You Money</h2>
+      <p>Every unanswered call is a customer who went to your competitor. Sound familiar?</p>
+    </div>
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="problem-icon">🌙</div>
+        <h3>Calls go to voicemail after hours</h3>
+        <p>New leads call at 8 PM when you're with your family. They hit voicemail, hang up, and book with whoever picks up.</p>
+        <span class="problem-stat">85% won't call back</span>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">🔄</div>
+        <h3>Staff stuck answering the same questions</h3>
+        <p>"What are your hours?" "Do you take insurance?" "How much does X cost?" Your team answers these 40 times a day instead of doing real work.</p>
+        <span class="problem-stat">2–3 hrs/day wasted</span>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">📅</div>
+        <h3>Appointments fall through the cracks</h3>
+        <p>A caller asks to book, you say "I'll call you back to schedule" — and by then they've already booked somewhere else.</p>
+        <span class="problem-stat">42% of SMBs lose $500+/mo</span>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">📊</div>
+        <h3>No data on what calls you're losing</h3>
+        <p>You have no idea how many leads you're losing or what they wanted. What you don't measure, you can't fix.</p>
+        <span class="problem-stat">Invisible revenue leak</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SOLUTION ─────────────────────────────────────────────────── -->
+<section class="solution">
+  <div class="container">
+    <div class="solution-grid">
+      <div class="before-after">
+        <div class="ba-card before">
+          <div class="ba-label">Before</div>
+          <ul>
+            <li>Phone rings at 11 PM</li>
+            <li>Nobody answers</li>
+            <li>Lead goes to voicemail</li>
+            <li>Lead calls a competitor</li>
+            <li>You never knew they called</li>
+            <li>$450 revenue lost</li>
+          </ul>
+        </div>
+        <div class="ba-card after">
+          <div class="ba-label">After</div>
+          <ul>
+            <li>Phone rings at 11 PM</li>
+            <li>Agent answers in 2 seconds</li>
+            <li>FAQs answered instantly</li>
+            <li>Appointment booked live</li>
+            <li>CRM updated automatically</li>
+            <li>SMS confirmation sent</li>
+          </ul>
+        </div>
+      </div>
+      <div class="solution-content">
+        <span class="tag">The Solution</span>
+        <h2>Your Agent. Always On. Never Misses a Lead.</h2>
+        <p>ResponseReady is the AI voice agent that handles every call, books every appointment, and routes your most important conversations to the right person — so your business grows without needing more staff.</p>
+        <p>Set it up once. It runs forever. While you sleep, while you're with a client, while you're on vacation.</p>
+        <a href="#book" class="btn btn-primary">See It In Action — Book a Call →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FEATURES ─────────────────────────────────────────────────── -->
+<section class="features" id="features">
+  <div class="container">
+    <div class="section-header">
+      <span class="tag">Features</span>
+      <h2>Everything Your Business Needs,<br>Handled Automatically</h2>
+      <p>Whether you're a dental office, law firm, or plumbing company — ResponseReady is built for businesses that run on phone calls.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">📞</div>
+        <h3>Answers Every Call — 24 Hours a Day</h3>
+        <p>No more voicemail. No more "we're closed." Your agent picks up instantly and handles the call professionally, at 3 PM or 3 AM.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📅</div>
+        <h3>Books Appointments Across Every Calendar You Use</h3>
+        <p>Syncs with Google Calendar, Outlook, and your booking software. Confirms availability in real-time and sends the confirmation automatically.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🧠</div>
+        <h3>Remembers Every Client — So Your Team Starts Informed</h3>
+        <p>Logs call details, caller info, and appointment notes directly into your CRM. Your team walks into every interaction with full context.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🎯</div>
+        <h3>Qualifies and Captures Every Lead</h3>
+        <p>Asks the right questions, collects contact info, and categorizes each caller by urgency and intent — so your team focuses on the hottest leads first.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">👤</div>
+        <h3>Escalates to a Human When It Matters</h3>
+        <p>The agent knows when to step back. Emergencies, complex questions, and priority clients get transferred to the right team member instantly.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📱</div>
+        <h3>Sends Confirmations, Reminders, and Follow-Ups</h3>
+        <p>Automated SMS and email confirmations after every interaction. Appointment reminders that reduce no-shows. Follow-up sequences that close leads.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── HOW IT WORKS ──────────────────────────────────────────────── -->
+<section class="how-it-works" style="position:relative;overflow:hidden;">
+  <div class="blob blob-accent" style="width:380px;height:380px;bottom:-100px;right:-80px;opacity:0.1;"></div>
+  <div class="container" style="position:relative;z-index:1;">
+    <div class="section-header light">
+      <span class="tag">Process</span>
+      <h2>Up and Running in Days, Not Months</h2>
+      <p>We handle the setup. You handle your business.</p>
+    </div>
+    <div class="steps-grid">
+      <div class="step">
+        <div class="step-number">1</div>
+        <h3>We Configure Your Agent</h3>
+        <p>Tell us your business, your FAQs, your calendar, and your voice. We build and configure a custom agent — scripted for your brand, not a template.</p>
+      </div>
+      <div class="step">
+        <div class="step-number">2</div>
+        <h3>Your Agent Goes Live</h3>
+        <p>It starts answering calls, booking appointments, logging data to your CRM, and sending confirmations. Everything, automatically.</p>
+      </div>
+      <div class="step">
+        <div class="step-number">3</div>
+        <h3>You Review and Grow</h3>
+        <p>Weekly call reports, booking summaries, and lead logs. You see exactly what your agent handled — and watch your missed-call rate drop to zero.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── DEMO ─────────────────────────────────────────────────────── -->
+<section class="demo" id="demo">
+  <div class="container">
+    <div class="demo-inner">
+      <div class="demo-copy">
+        <span class="tag">Live Demo</span>
+        <h2>Don't Take Our Word for It — Talk to the Agent</h2>
+        <p>This is the same kind of AI agent your business would have. Ask it a question, try to book an appointment, or just see how it sounds. No forms. No sign-up.</p>
+        <div class="demo-stats">
+          <div class="demo-stat-card">
+            <div class="number">82<span>%</span></div>
+            <div class="label">of visitors who chat are more likely to book a call</div>
+          </div>
+          <div class="demo-stat-card">
+            <div class="number">&lt;2<span>s</span></div>
+            <div class="label">average response time from your agent</div>
+          </div>
+        </div>
+        <a href="#book" class="btn btn-primary">Ready to Set This Up for Your Business? →</a>
+      </div>
+
+      <div class="demo-widget">
+        <div class="demo-widget-header">
+          <div class="dot"></div>
+          <div class="title">ResponseReady Demo Agent</div>
+          <div class="sub">AI · Responding now</div>
+        </div>
+        <div class="demo-messages" id="demoMessages">
+          <div class="demo-msg agent">
+            <div class="sender">ResponseReady Agent</div>
+            <div class="bubble">Hi! I'm a demo of what your AI voice agent would be like. Ask me anything — your hours, how to book, pricing, or just say hello. I'm here to show you what your customers would experience. 👋</div>
+          </div>
+          <div class="demo-msg visitor">
+            <div class="sender">Visitor</div>
+            <div class="bubble">Do you actually sound human on the phone?</div>
+          </div>
+          <div class="demo-msg agent">
+            <div class="sender">ResponseReady Agent</div>
+            <div class="bubble">That's the #1 question! Research shows 85–95% of callers can't distinguish AI voice from a real person. Your agent is configured with a natural-sounding voice, your business name, and your exact scripts. Want to hear a real call sample?</div>
+          </div>
+          <div class="demo-msg visitor">
+            <div class="sender">Visitor</div>
+            <div class="bubble">What if it says something wrong?</div>
+          </div>
+        </div>
+        <div class="demo-input-bar">
+          <input type="text" class="demo-input" placeholder="Type a question to the demo agent..." id="demoInput" />
+          <button class="demo-send-btn" id="demoSend">Send</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOUNDER ───────────────────────────────────────────────────── -->
+<section class="founder">
+  <div class="container">
+    <div class="section-header">
+      <span class="tag">Why We Built This</span>
+      <h2>Built by Someone Who Saw the Problem Firsthand</h2>
+    </div>
+    <div class="founder-inner">
+      <div class="founder-card">
+        <div class="founder-avatar">👋</div>
+        <h3>The Founder</h3>
+        <div class="founder-role">Founder, ResponseReady AI</div>
+        <p class="founder-bio">I built ResponseReady because I was the customer on the other end of the phone. I needed a service — something urgent — called twice, got voicemail both times, and ended up going somewhere else. The business probably never knew they lost me. That experience stuck with me, because I knew it was happening thousands of times a day to businesses just like theirs. I built the fix. I'll show you exactly how it works on our call.</p>
+      </div>
+
+      <div class="founding-client-card">
+        <div class="founding-label">🌟 Founding Client Program</div>
+        <h3>We're Onboarding Our First 10 Businesses Personally</h3>
+        <p>Every setup is handled by our founder — not a template, not a ticket. In exchange, Founding Clients get priority pricing that won't be available once we're at scale.</p>
+        <div>
+          <div class="founding-slots">
+            <div class="slot taken"></div>
+            <div class="slot taken"></div>
+            <div class="slot taken"></div>
+            <div class="slot"></div>
+            <div class="slot"></div>
+            <div class="slot"></div>
+            <div class="slot"></div>
+            <div class="slot"></div>
+            <div class="slot"></div>
+            <div class="slot"></div>
+          </div>
+          <div class="slots-label"><span>3 of 10</span> spots taken · 7 remaining</div>
+        </div>
+        <a href="#book" class="btn btn-primary" style="margin-top:8px;">Book Your Founding Client Call →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CAPABILITIES ──────────────────────────────────────────────── -->
+<section class="capabilities" id="capabilities">
+  <div class="container">
+    <div class="section-header">
+      <span class="tag">What's Possible</span>
+      <h2>Built Around Your Business,<br>Not a Template</h2>
+    </div>
+    <p class="capabilities-intro">Every business is different. Some need a reliable after-hours voice to stop leads from slipping away. Others are ready to automate their entire front desk. We configure your agent to match exactly where you are — and scale as you grow. On your discovery call, we'll map out what the right setup looks like for you specifically.</p>
+    <div class="capabilities-track">
+      <div class="cap-card">
+        <div class="cap-level">Foundation</div>
+        <div class="cap-title">Always-On Coverage</div>
+        <div class="cap-desc">Stop losing calls to voicemail. Your agent picks up after hours, answers common questions, and makes sure no lead falls through the cracks.</div>
+        <ul class="cap-features">
+          <li><span class="check">✓</span> 24/7 call answering</li>
+          <li><span class="check">✓</span> FAQ handling — your questions, your answers</li>
+          <li><span class="check">✓</span> After-hours message capture</li>
+          <li><span class="check">✓</span> Instant SMS alert to your team</li>
+          <li><span class="check">✓</span> Weekly call summary reports</li>
+        </ul>
+        <div class="cap-footer">Great starting point for businesses that just need to stop bleeding leads after hours.</div>
+      </div>
+
+      <div class="cap-card highlighted">
+        <div class="cap-highlight-badge">Most Requested</div>
+        <div class="cap-level">Full Front Desk</div>
+        <div class="cap-title">Scheduling + CRM + Follow-Up</div>
+        <div class="cap-desc">Your agent handles calls end-to-end — booking real appointments, logging everything to your CRM, and sending confirmations automatically.</div>
+        <ul class="cap-features">
+          <li><span class="check">✓</span> Everything in Foundation</li>
+          <li><span class="check">✓</span> Live appointment scheduling</li>
+          <li><span class="check">✓</span> Calendar sync across platforms</li>
+          <li><span class="check">✓</span> CRM logging & client history</li>
+          <li><span class="check">✓</span> Email + SMS confirmations</li>
+          <li><span class="check">✓</span> Live human transfer when needed</li>
+        </ul>
+        <div class="cap-footer">The most common setup for dental offices, law firms, salons, home services, and more.</div>
+      </div>
+
+      <div class="cap-card">
+        <div class="cap-level">Full Custom</div>
+        <div class="cap-title">Revenue-Optimized & Multi-Location</div>
+        <div class="cap-desc">For businesses that want a fully tailored voice AI — custom workflows, lead re-engagement, multi-location routing, and dedicated support.</div>
+        <ul class="cap-features">
+          <li><span class="check">✓</span> Everything in Full Front Desk</li>
+          <li><span class="check">✓</span> Multi-location call routing</li>
+          <li><span class="check">✓</span> Lead retention workflows</li>
+          <li><span class="check">✓</span> Custom personas & brand voice</li>
+          <li><span class="check">✓</span> Revenue optimization scripting</li>
+          <li><span class="check">✓</span> Dedicated account management</li>
+        </ul>
+        <div class="cap-footer">Built for growing businesses that want every call to work harder.</div>
+      </div>
+    </div>
+    <p class="capabilities-cta">Not sure which fits? <a href="#book">Book a discovery call</a> — we'll figure it out together in 20 minutes.</p>
+  </div>
+</section>
+
+<!-- ─── FAQ ──────────────────────────────────────────────────────── -->
+<section class="faq" id="faq">
+  <div class="container">
+    <div class="section-header">
+      <span class="tag">FAQ</span>
+      <h2>Real Questions from Real Business Owners</h2>
+      <p>If you're wondering, others have asked it too.</p>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFAQ(this)">
+          <span class="faq-question-text">Does it really sound human? My customers will notice it's a bot.</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Research consistently shows that 85–95% of callers cannot distinguish modern AI voice from a human agent. Your agent is configured with a warm, professional voice, your exact business name, and natural conversation flow. Most of your customers will simply think you hired a great receptionist — and that's exactly the point.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFAQ(this)">
+          <span class="faq-question-text">What happens when it doesn't know the answer?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Your agent is programmed with your specific FAQs and scripts. If a caller asks something outside its knowledge, it tells them politely that it's connecting them to a team member — and either transfers the call or takes a message with their details so you can follow up. It never guesses or gives wrong information.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFAQ(this)">
+          <span class="faq-question-text">Do I need to change my phone system or number?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">No. In most cases, your existing business number stays exactly the same. We configure a simple call forwarding rule (after X rings, after hours, or always) so your agent handles calls seamlessly. No new hardware, no IT project.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFAQ(this)">
+          <span class="faq-question-text">What if I need a human to take over the call?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Live transfer is built in. For urgent matters, priority clients, or any caller who requests it, your agent can warm-transfer the call to you or a team member in real time. You define the escalation rules — we configure them exactly as you want.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFAQ(this)">
+          <span class="faq-question-text">Is my business data secure?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">All call data and customer information is encrypted in transit and at rest. We follow industry-standard data security practices and do not sell or share your customer data. You own your data, and you can export or delete it at any time.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFAQ(this)">
+          <span class="faq-question-text">Can I customize exactly what the agent says?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Completely. The agent is built to your specifications — your greeting, your FAQs, your tone, your specific policies. As your business changes, you can request script updates at any time. You're always in control of what the agent says.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFAQ(this)">
+          <span class="faq-question-text">Does this work for my industry?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">ResponseReady is built for any phone-call-dependent business: medical and dental offices, law firms, real estate agencies, home services (HVAC, plumbing, roofing), salons and spas, fitness studios, hospitality, and more. If your business runs on phone calls, your agent will pay for itself quickly.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FINAL CTA ─────────────────────────────────────────────────── -->
+<section class="final-cta" id="book">
+  <div class="blob blob-accent" style="width:420px;height:420px;top:-100px;right:-100px;opacity:0.14;"></div>
+  <div class="blob blob-2 blob-warm" style="width:320px;height:320px;bottom:-60px;left:-80px;opacity:0.1;"></div>
+  <div class="container container--narrow" style="position:relative;z-index:1;">
+    <h2>Never Miss a Lead <em>Again</em>.<br>Starting This Week.</h2>
+    <p>Book a 20-minute call. We'll show you a live demo and build a custom plan for your business — no commitment, no hard sell.</p>
+    <div class="final-cta-actions">
+      <a href="mailto:hello@responsereadyai.com?subject=I'd%20like%20to%20book%20a%20discovery%20call" class="btn btn-primary btn-lg">Book a Discovery Call →</a>
+    </div>
+    <div class="cta-steps">
+      <div class="cta-step"><div class="cta-step-num">1</div>Book a 20-min call</div>
+      <div class="cta-step"><div class="cta-step-num">2</div>Get a live demo</div>
+      <div class="cta-step"><div class="cta-step-num">3</div>Receive your custom plan</div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ───────────────────────────────────────────────────── -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo">Response<span>Ready</span> AI</div>
+        <p>AI voice agents that answer every call, book every appointment, and capture every lead — so small businesses stop losing revenue to voicemail.</p>
+        <div class="footer-contact">
+          <div>📧 <a href="mailto:hello@responsereadyai.com">hello@responsereadyai.com</a></div>
+          <div>📍 United States · Remote Service</div>
+        </div>
+        <div class="footer-dba">ResponseReady AI is a registered DBA · Registered Business</div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 ResponseReady AI. All rights reserved.</p>
+      <div class="footer-legal">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="sms-consent.html">SMS Consent &amp; Messaging Policy</a>
+        <a href="terms.html">Terms of Service</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ─── Sticky Nav
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 20);
+  });
+
+  // ─── FAQ Accordion
+  function toggleFAQ(btn) {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+
+  // ─── Demo Chat
+  const demoInput = document.getElementById('demoInput');
+  const demoSend = document.getElementById('demoSend');
+  const demoMessages = document.getElementById('demoMessages');
+
+  const autoReplies = [
+    "Great question! Your agent would handle that instantly. It's configured with your exact FAQs so callers never have to wait for an answer. Want to see the full setup?",
+    "Exactly the kind of thing your agent handles automatically. Every interaction is logged to your CRM so your team has full context. Book a call and I'll walk you through how it works for your specific business.",
+    "Your agent would respond to that in under 2 seconds — and if it can't fully answer, it escalates to a human or takes a message. No caller ever feels stuck. Ready to see it live?",
+    "That's a common one! ResponseReady is designed for businesses just like yours. Book a free 20-minute call and we'll show you a demo configured for your industry specifically."
+  ];
+  let replyIndex = 0;
+
+  function sendDemoMessage() {
+    const text = demoInput.value.trim();
+    if (!text) return;
+
+    const visitorMsg = document.createElement('div');
+    visitorMsg.className = 'demo-msg visitor';
+    visitorMsg.innerHTML = `<div class="sender">You</div><div class="bubble">${text}</div>`;
+    visitorMsg.style.opacity = '1';
+    visitorMsg.style.animation = 'none';
+    demoMessages.appendChild(visitorMsg);
+
+    demoInput.value = '';
+
+    setTimeout(() => {
+      const agentMsg = document.createElement('div');
+      agentMsg.className = 'demo-msg agent';
+      agentMsg.innerHTML = `<div class="sender">ResponseReady Agent</div><div class="bubble">${autoReplies[replyIndex % autoReplies.length]}</div>`;
+      agentMsg.style.opacity = '1';
+      agentMsg.style.animation = 'none';
+      demoMessages.appendChild(agentMsg);
+      replyIndex++;
+      demoMessages.scrollTop = demoMessages.scrollHeight;
+    }, 800);
+
+    demoMessages.scrollTop = demoMessages.scrollHeight;
+  }
+
+  demoSend.addEventListener('click', sendDemoMessage);
+  demoInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') sendDemoMessage();
+  });
+</script>
+
+</body>
+</html>
