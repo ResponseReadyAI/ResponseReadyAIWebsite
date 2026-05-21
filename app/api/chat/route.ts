@@ -1,9 +1,10 @@
 import Anthropic from "@anthropic-ai/sdk";
 import { NextRequest, NextResponse } from "next/server";
+import twilio from "twilio";
 
 const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
-const RILEY_SYSTEM_PROMPT = `You are Devon, a chat agent for Response Ready AI — a done-for-you AI voice agent service for small businesses. You're embedded on the Response Ready AI website as a live product demo. When someone talks to you, they're experiencing the same kind of agent their business could have.
+const SYSTEM_PROMPT = `You are Devon, a chat agent for Response Ready AI — a done-for-you AI voice agent service for small businesses. You're embedded on the Response Ready AI website as a live product demo. When someone talks to you, they're experiencing the same kind of agent their business could have.
 
 Your job is to answer visitor questions honestly, represent Response Ready AI well, and — when the conversation is ready — help them book a 20-minute discovery call with Daniel, the founder.
 
@@ -57,17 +58,16 @@ FAQ ANSWERS:
 GREETING AND DATA COLLECTION
 Start by asking who you're speaking with — get their first name before anything else. Once you have it, use it naturally (not every message). Then let the conversation flow. Answer questions first.
 
-As the conversation develops, collect these four things — one at a time, only when it fits:
+As the conversation develops, collect these — one at a time, only when it fits:
 1. Their name (ask first, before anything else)
 2. What kind of business they have
-3. Their phone number or email — whichever they prefer
-4. Best time to reach them (only if they mention timing or seem ready to connect)
+3. Their phone number — needed to connect them with Daniel
 
-Don't run through this like a checklist. If they ask questions, answer them. Collect info in the gaps, not mid-answer. Three pieces of info is enough to hand off a warm lead — don't stall the conversation chasing the fourth.
+Don't run through this like a checklist. If they ask questions, answer them. Collect info in the gaps, not mid-answer.
 
 When it's time to surface the call: "The best next step is a quick 20-minute call with Daniel — he'll show you a live demo and build a plan around your business. No commitment. Want me to pass your info to him?"
 
-Once you have name + contact + business type, confirm warmly: "Got it — I'll make sure Daniel has your info. He typically follows up within a business day."
+Once you have their name and phone number, call the send_sms function immediately — do not wait. Then confirm warmly: "Got it — I've sent Daniel your info. He typically follows up within a business day."
 
 Founding Client Program — surface when they're already interested, not as a pressure tactic.
 
@@ -77,6 +77,66 @@ WHAT NOT TO DO:
 - Never claim more than 3 spots are taken
 - Never be pushy
 - Never use filler openers`;
+
+const SEND_SMS_TOOL: Anthropic.Tool = {
+  name: "send_sms",
+  description:
+    "Sends Daniel an SMS alert when a visitor has shared their name and phone number and expressed interest in Response Ready AI. Call this immediately once you have both — do not wait for further confirmation.",
+  input_schema: {
+    type: "object" as const,
+    properties: {
+      visitor_name: {
+        type: "string",
+        description: "The visitor's name as they provided it.",
+      },
+      visitor_phone: {
+        type: "string",
+        description: "The visitor's phone number as they provided it.",
+      },
+      business_type: {
+        type: "string",
+        description: "Type of business, if the visitor mentioned it.",
+      },
+      summary: {
+        type: "string",
+        description:
+          "One or two sentences on what they are looking for and how warm the lead is.",
+      },
+    },
+    required: ["visitor_name", "visitor_phone", "summary"],
+  },
+};
+
+interface SmsInput {
+  visitor_name: string;
+  visitor_phone: string;
+  business_type?: string;
+  summary: string;
+}
+
+async function executeSendSms(input: SmsInput): Promise<string> {
+  const twilioClient = twilio(
+    process.env.TWILIO_API_KEY_SID,
+    process.env.TWILIO_CLIENT_SECRET_KEY,
+    { accountSid: process.env.TWILIO_ACCOUNT_SID }
+  );
+
+  const lines = [
+    "New Response Ready AI lead from website chat:",
+    `Name: ${input.visitor_name}`,
+    `Phone: ${input.visitor_phone}`,
+    input.business_type ? `Business: ${input.business_type}` : null,
+    `Note: ${input.summary}`,
+  ].filter(Boolean) as string[];
+
+  await twilioClient.messages.create({
+    body: lines.join("\n"),
+    from: process.env.TWILIO_FROM_NUMBER!,
+    to: process.env.DANIEL_PHONE_NUMBER!,
+  });
+
+  return "SMS sent successfully.";
+}
 
 // Simple in-memory rate limit: 20 messages per IP per hour
 const rateLimitStore = new Map<string, { count: number; resetAt: number }>();
@@ -121,26 +181,68 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Message is required." }, { status: 400 });
   }
 
-  const messages: ChatMessage[] = [
-    ...history.slice(-10), // keep last 10 turns for context without blowing token budget
-    { role: "user", content: message.trim() },
+  const systemBlock: Anthropic.TextBlockParam = {
+    type: "text",
+    text: SYSTEM_PROMPT,
+    cache_control: { type: "ephemeral" },
+  };
+
+  const messages: Anthropic.MessageParam[] = [
+    ...history.slice(-10).map((m) => ({
+      role: m.role,
+      content: m.content,
+    })),
+    { role: "user" as const, content: message.trim() },
   ];
 
-  const response = await client.messages.create({
+  let response = await client.messages.create({
     model: "claude-haiku-4-5-20251001",
-    max_tokens: 300,
-    system: [
-      {
-        type: "text",
-        text: RILEY_SYSTEM_PROMPT,
-        cache_control: { type: "ephemeral" },
-      },
-    ],
+    max_tokens: 400,
+    system: [systemBlock],
+    tools: [SEND_SMS_TOOL],
     messages,
   });
 
+  // If the agent wants to call send_sms, execute it and get the follow-up reply
+  if (response.stop_reason === "tool_use") {
+    const toolUseBlock = response.content.find(
+      (b): b is Anthropic.ToolUseBlock => b.type === "tool_use"
+    );
+
+    if (toolUseBlock) {
+      let toolResult: string;
+      try {
+        toolResult = await executeSendSms(toolUseBlock.input as SmsInput);
+      } catch (err) {
+        console.error("SMS send failed:", err);
+        toolResult = "SMS failed to send — log the lead manually.";
+      }
+
+      messages.push({ role: "assistant", content: response.content });
+      messages.push({
+        role: "user",
+        content: [
+          {
+            type: "tool_result",
+            tool_use_id: toolUseBlock.id,
+            content: toolResult,
+          },
+        ],
+      });
+
+      response = await client.messages.create({
+        model: "claude-haiku-4-5-20251001",
+        max_tokens: 400,
+        system: [systemBlock],
+        tools: [SEND_SMS_TOOL],
+        messages,
+      });
+    }
+  }
+
   const reply =
-    response.content[0].type === "text" ? response.content[0].text : "";
+    response.content.find((b): b is Anthropic.TextBlock => b.type === "text")
+      ?.text ?? "";
 
   return NextResponse.json({ message: reply });
 }

@@ -1,5 +1,4 @@
 import { PhoneOutgoing, MessageCircle, Globe } from "lucide-react";
-import { BOOKING_HREF } from "@/lib/constants";
 
 const SERVICES = [
   {
@@ -47,12 +46,6 @@ export default function AdditionalServicesSection() {
                     {service.body}
                   </p>
                 </div>
-                <a
-                  href={BOOKING_HREF}
-                  className="text-sm font-semibold text-[var(--color-accent)] hover:underline whitespace-nowrap"
-                >
-                  Learn more →
-                </a>
               </div>
             );
           })}
