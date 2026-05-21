@@ -1,5 +1,5 @@
-import ChatDemoPlaceholder from "@/components/ChatDemoPlaceholder";
 import VoiceDemoForm from "@/components/VoiceDemoForm";
+import { MessageSquare } from "lucide-react";
 
 export default function DemoSection() {
   return (
@@ -30,16 +30,23 @@ export default function DemoSection() {
           {/* Chat Demo */}
           <div>
             <h3 className="text-xl font-semibold text-white mb-2">
-              Chat with the AI Agent
+              Chat with Devon — Right Now
             </h3>
             <p className="text-white/70 text-sm mb-6 leading-relaxed">
-              This is the same kind of AI agent your business would have. Ask it
-              a question, try to book an appointment, or just see how it sounds.
+              Devon is a live AI agent — the same kind your business would have.
+              Ask a question, try to book an appointment, or just see how it
+              feels. The chat bubble is in the bottom-right corner.
             </p>
-            <ChatDemoPlaceholder />
-            <p className="mt-3 text-xs text-[var(--color-muted)] text-center">
-              Full chat agent coming soon
-            </p>
+            <div className="rounded-xl border border-white/10 bg-white/5 p-7 flex flex-col items-center gap-4 text-center">
+              <div className="h-14 w-14 rounded-full bg-[var(--color-accent)] flex items-center justify-center shadow-lg">
+                <MessageSquare className="h-7 w-7 text-white" />
+              </div>
+              <p className="text-white font-medium">Devon is online</p>
+              <p className="text-white/60 text-sm">
+                Hit the chat bubble in the bottom-right corner to start a
+                conversation.
+              </p>
+            </div>
           </div>
 
           {/* Voice Demo */}
