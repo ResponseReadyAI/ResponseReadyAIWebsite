@@ -66,9 +66,33 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  // Phone formatted for future Retell integration
-  const _e164Phone = formatE164(phone);
+  const e164Phone = formatE164(phone);
 
-  // Retell integration will be wired here
+  const retellRes = await fetch("https://api.retellai.com/v2/create-phone-call", {
+    method: "POST",
+    headers: {
+      "Authorization": `Bearer ${process.env.RETELL_API_KEY}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      agent_id: process.env.RETELL_AGENT_ID,
+      from_number: process.env.RETELL_FROM_NUMBER,
+      to_number: e164Phone,
+      metadata: {
+        visitor_name: name.trim(),
+        source: "website_voice_demo",
+      },
+    }),
+  });
+
+  if (!retellRes.ok) {
+    const err = await retellRes.text();
+    console.error("Retell API error:", err);
+    return NextResponse.json(
+      { success: false, error: "Failed to initiate call. Please try again." },
+      { status: 500 }
+    );
+  }
+
   return NextResponse.json({ success: true });
 }
