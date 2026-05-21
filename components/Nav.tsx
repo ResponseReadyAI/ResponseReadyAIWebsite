@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
-import { NAV_LINKS, BOOKING_HREF, SITE_NAME } from "@/lib/constants";
+import { NAV_LINKS, SITE_NAME } from "@/lib/constants";
+import { openBooking } from "@/components/ui/booking-modal";
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
@@ -45,12 +46,12 @@ export default function Nav() {
           </ul>
 
           {/* Desktop CTA */}
-          <a
-            href={BOOKING_HREF}
+          <button
+            onClick={openBooking}
             className="hidden md:inline-flex items-center rounded-lg bg-[var(--color-accent)] px-4 py-2 text-sm font-semibold text-white hover:bg-[var(--color-accent-dark)] transition-colors"
           >
             Book a Call
-          </a>
+          </button>
 
           {/* Mobile hamburger */}
           <button
@@ -103,13 +104,12 @@ export default function Nav() {
             ))}
           </ul>
 
-          <a
-            href={BOOKING_HREF}
+          <button
+            onClick={() => { setMenuOpen(false); openBooking(); }}
             className="flex items-center justify-center rounded-lg bg-[var(--color-accent)] px-6 py-3.5 text-base font-semibold text-white hover:bg-[var(--color-accent-dark)] transition-colors"
-            onClick={() => setMenuOpen(false)}
           >
             Book a Call →
-          </a>
+          </button>
         </div>
       )}
     </>

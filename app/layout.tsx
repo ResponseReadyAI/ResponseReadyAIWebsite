@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, DM_Serif_Display } from "next/font/google";
 import "./globals.css";
 import { FloatingChatWidget } from "@/components/ui/floating-chat-widget";
+import { BookingModal } from "@/components/ui/booking-modal";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -17,15 +18,15 @@ const dmSerif = DM_Serif_Display({
 });
 
 export const metadata: Metadata = {
-  title: "ResponseReady AI — Never Miss a Call",
+  title: "Response Ready AI — Never Miss a Call",
   description:
     "Done-for-you AI voice agents for small businesses. Answers every call 24/7, books appointments, captures leads. Set up in days by our founder personally.",
   openGraph: {
-    title: "ResponseReady AI — Never Miss a Call",
+    title: "Response Ready AI — Never Miss a Call",
     description:
       "Done-for-you AI voice agents for small businesses. Answers every call 24/7, books appointments, captures leads. Set up in days by our founder personally.",
     url: "https://responsereadyai.com",
-    siteName: "ResponseReady AI",
+    siteName: "Response Ready AI",
     type: "website",
   },
   alternates: {
@@ -40,7 +41,7 @@ export const metadata: Metadata = {
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
-  name: "ResponseReady AI",
+  name: "Response Ready AI",
   description:
     "Done-for-you AI voice agents for small businesses. Answers every call 24/7, books appointments, captures leads.",
   url: "https://responsereadyai.com",
@@ -65,6 +66,7 @@ export default function RootLayout({
         />
         {children}
         <FloatingChatWidget />
+        <BookingModal />
       </body>
     </html>
   );

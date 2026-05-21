@@ -30,7 +30,7 @@ const FAQS = [
   },
   {
     q: "Does this work for my industry?",
-    a: "ResponseReady is built for any phone-call-dependent business: medical/dental, law, real estate, home services, salons, fitness, hospitality, and more.",
+    a: "Response Ready AI is built for any phone-call-dependent business: medical/dental, law, real estate, home services, salons, fitness, hospitality, and more.",
   },
 ];
 

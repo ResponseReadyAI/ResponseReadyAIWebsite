@@ -17,7 +17,7 @@ export default function BeforeAfter() {
     <div className="grid grid-cols-1 gap-4 md:grid-cols-2 mt-10">
       <div className="rounded-xl border border-red-100 bg-red-50 p-8">
         <p className="text-xs font-semibold uppercase tracking-widest text-red-400 mb-5">
-          Without ResponseReady
+          Without Response Ready AI
         </p>
         <ul className="space-y-3">
           {BEFORE.map((item) => (
@@ -31,7 +31,7 @@ export default function BeforeAfter() {
 
       <div className="rounded-xl border border-green-100 bg-green-50 p-8">
         <p className="text-xs font-semibold uppercase tracking-widest text-green-600 mb-5">
-          With ResponseReady
+          With Response Ready AI
         </p>
         <ul className="space-y-3">
           {AFTER.map((item) => (

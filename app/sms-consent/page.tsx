@@ -3,7 +3,7 @@ import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "SMS Consent & Messaging Policy — ResponseReady AI",
+  title: "SMS Consent & Messaging Policy — Response Ready AI",
   description:
     "How Response Ready AI obtains consent before sending SMS, our verbal opt-in script, and how to stop messages.",
   alternates: { canonical: "https://responsereadyai.com/sms-consent" },

@@ -1,4 +1,7 @@
-import { BOOKING_HREF, FOUNDING_SPOTS_TAKEN, FOUNDING_SPOTS_TOTAL, FOUNDING_SPOTS_REMAINING } from "@/lib/constants";
+"use client";
+
+import { FOUNDING_SPOTS_TAKEN, FOUNDING_SPOTS_TOTAL, FOUNDING_SPOTS_REMAINING } from "@/lib/constants";
+import { openBooking } from "@/components/ui/booking-modal";
 
 export default function FoundingClientSection() {
   const pct = Math.round((FOUNDING_SPOTS_TAKEN / FOUNDING_SPOTS_TOTAL) * 100);
@@ -45,12 +48,12 @@ export default function FoundingClientSection() {
           />
         </div>
 
-        <a
-          href={BOOKING_HREF}
+        <button
+          onClick={openBooking}
           className="inline-flex items-center rounded-lg bg-[var(--color-accent)] px-7 py-3.5 text-base font-semibold text-white hover:bg-[var(--color-accent-dark)] transition-colors shadow-sm"
         >
           Claim Your Spot →
-        </a>
+        </button>
       </div>
     </section>
   );

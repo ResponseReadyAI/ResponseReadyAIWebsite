@@ -1,5 +1,7 @@
+"use client";
+
 import FoundingClientBadge from "@/components/FoundingClientBadge";
-import { BOOKING_HREF } from "@/lib/constants";
+import { openBooking } from "@/components/ui/booking-modal";
 
 export default function HeroSection() {
   return (
@@ -18,12 +20,12 @@ export default function HeroSection() {
               Around the clock — without hiring anyone.
             </p>
             <div className="mt-10 flex flex-col sm:flex-row items-start gap-4">
-              <a
-                href={BOOKING_HREF}
+              <button
+                onClick={openBooking}
                 className="inline-flex items-center rounded-lg bg-[var(--color-accent)] px-7 py-3.5 text-base font-semibold text-white hover:bg-[var(--color-accent-dark)] transition-colors shadow-sm"
               >
                 Book a Discovery Call →
-              </a>
+              </button>
               <p className="text-sm text-[var(--color-muted)] self-center">
                 20 min. No commitment. No hard sell.
               </p>

@@ -40,7 +40,7 @@ const messageVariants: Variants = {
 const GREETING: Message = {
   role: "agent",
   content:
-    "Hey — I'm Devon, the AI agent for ResponseReady. I'm actually a live demo of the kind of agent your business could have. What brings you here today?",
+    "Hey — I'm Devon, the AI agent for Response Ready AI. Before anything else, who am I speaking with?",
 };
 
 export function FloatingChatWidget() {
@@ -123,7 +123,7 @@ export function FloatingChatWidget() {
                   </div>
                   <div>
                     <h3 className="text-sm font-semibold text-white">Devon</h3>
-                    <p className="text-xs text-white/60">ResponseReady AI Demo</p>
+                    <p className="text-xs text-white/60">Response Ready AI Demo</p>
                   </div>
                 </div>
                 <Button
@@ -214,6 +214,22 @@ export function FloatingChatWidget() {
                 </Button>
               </form>
             </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Nudge label */}
+      <AnimatePresence>
+        {!isOpen && (
+          <motion.div
+            key="nudge"
+            initial={{ opacity: 0, y: 6 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 6 }}
+            transition={{ delay: 1.2, duration: 0.3 }}
+            className="pointer-events-none select-none rounded-full bg-[var(--color-primary)] px-3 py-1.5 text-xs font-medium text-white shadow-md"
+          >
+            Hi! 👋 Chat with Devon
           </motion.div>
         )}
       </AnimatePresence>

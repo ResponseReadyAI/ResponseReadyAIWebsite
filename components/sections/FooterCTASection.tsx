@@ -1,5 +1,7 @@
+"use client";
+
 import FoundingClientBadge from "@/components/FoundingClientBadge";
-import { BOOKING_HREF } from "@/lib/constants";
+import { openBooking } from "@/components/ui/booking-modal";
 
 export default function FooterCTASection() {
   return (
@@ -19,12 +21,12 @@ export default function FooterCTASection() {
           custom plan.
         </p>
         <div className="flex flex-col items-center gap-4">
-          <a
-            href={BOOKING_HREF}
+          <button
+            onClick={openBooking}
             className="inline-flex items-center rounded-lg bg-white px-7 py-3.5 text-base font-semibold text-[var(--color-primary)] hover:bg-[var(--color-gray-light)] transition-colors shadow-sm"
           >
             Book a Discovery Call →
-          </a>
+          </button>
           <FoundingClientBadge />
         </div>
       </div>

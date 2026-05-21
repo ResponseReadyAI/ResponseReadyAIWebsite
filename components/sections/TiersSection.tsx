@@ -1,5 +1,4 @@
 import { Check } from "lucide-react";
-import { BOOKING_HREF } from "@/lib/constants";
 
 const TIERS = [
   {
@@ -101,16 +100,6 @@ export default function TiersSection() {
                 {tier.copy}
               </p>
 
-              <a
-                href={BOOKING_HREF}
-                className={`mt-auto flex items-center justify-center rounded-lg px-5 py-3 text-sm font-semibold transition-colors ${
-                  tier.featured
-                    ? "bg-white text-[var(--color-accent)] hover:bg-[var(--color-gray-light)]"
-                    : "border border-[var(--color-gray-mid)] text-[var(--color-primary)] hover:bg-[var(--color-gray-light)]"
-                }`}
-              >
-                Book a Discovery Call →
-              </a>
             </div>
           ))}
         </div>

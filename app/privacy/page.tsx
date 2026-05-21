@@ -3,9 +3,9 @@ import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy — ResponseReady AI",
+  title: "Privacy Policy — Response Ready AI",
   description:
-    "ResponseReady AI's privacy policy explains what information we collect, how we use it, and your choices — including our SMS messaging program.",
+    "Response Ready AI's privacy policy explains what information we collect, how we use it, and your choices — including our SMS messaging program.",
   alternates: { canonical: "https://responsereadyai.com/privacy" },
 };
 

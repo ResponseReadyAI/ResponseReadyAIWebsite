@@ -48,7 +48,7 @@ export default function FeaturesSection() {
     <section className="py-24 px-6 bg-[var(--color-surface)]" id="features">
       <div className="mx-auto max-w-6xl">
         <h2 className="text-3xl md:text-4xl font-[family-name:var(--font-display)] text-[var(--color-primary)] mb-14">
-          What ResponseReady<br />Does For Your Business
+          What Response Ready AI<br />Does For Your Business
         </h2>
 
         <div ref={ref} className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">

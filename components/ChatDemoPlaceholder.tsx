@@ -7,7 +7,7 @@ export default function ChatDemoPlaceholder() {
           <span className="text-white text-xs font-bold">R</span>
         </div>
         <div>
-          <p className="text-white text-sm font-semibold leading-none">ResponseReady Demo Agent</p>
+          <p className="text-white text-sm font-semibold leading-none">Response Ready AI Demo Agent</p>
           <p className="text-xs text-[var(--color-muted)] mt-0.5 flex items-center gap-1.5">
             <span className="h-1.5 w-1.5 rounded-full bg-[var(--color-success)]" aria-hidden="true" />
             Live

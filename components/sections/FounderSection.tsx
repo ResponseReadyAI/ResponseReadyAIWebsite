@@ -12,18 +12,18 @@ export default function FounderSection() {
 
         <blockquote className="-mt-6 space-y-5">
           <p className="text-xl md:text-2xl font-[family-name:var(--font-display)] text-white leading-relaxed">
-            I built ResponseReady because I was the customer on the other end of
+            I built Response Ready AI because I was the customer on the other end of
             the phone. I needed a service — something urgent — called twice, got
             voicemail both times, and ended up going somewhere else. The business
             probably never knew they lost me.
           </p>
           <p className="text-lg text-white/60 leading-relaxed">
             If your business runs on phone calls, you can&rsquo;t afford to miss
-            them. ResponseReady makes sure you don&rsquo;t.
+            them. Response Ready AI makes sure you don&rsquo;t.
           </p>
           <footer className="pt-6 border-t border-white/10">
             <p className="text-sm font-semibold text-white">
-              — Daniel, Founder of ResponseReady AI
+              — Daniel, Founder of Response Ready AI
             </p>
             <a
               href={`mailto:${FOUNDER_EMAIL}`}
