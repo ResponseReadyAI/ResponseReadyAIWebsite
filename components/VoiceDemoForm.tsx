@@ -7,11 +7,26 @@ import { BOOKING_HREF } from "@/lib/constants";
 
 type FormState = "idle" | "loading" | "success" | "error";
 
+const INDUSTRIES = [
+  { value: "medspa", label: "Med Spa" },
+  { value: "roofing", label: "Roofing" },
+  { value: "plumber", label: "Plumbing" },
+  { value: "auto_detailing", label: "Auto Detailing" },
+  { value: "auto_dealer", label: "Auto Dealership" },
+  { value: "hvac", label: "HVAC" },
+  { value: "dentist", label: "Dental" },
+  { value: "town_offices", label: "Town / Municipal Offices" },
+  { value: "boutique", label: "Retail Boutique" },
+  { value: "contractor", label: "General Contractor" },
+];
+
 export default function VoiceDemoForm() {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
+  const [industry, setIndustry] = useState("");
   const [honeypot, setHoneypot] = useState("");
   const [phoneError, setPhoneError] = useState("");
+  const [industryError, setIndustryError] = useState("");
   const [formState, setFormState] = useState<FormState>("idle");
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -28,9 +43,20 @@ export default function VoiceDemoForm() {
     return true;
   }
 
+  function validateIndustry(value: string) {
+    if (!value) {
+      setIndustryError("Please select your industry.");
+      return false;
+    }
+    setIndustryError("");
+    return true;
+  }
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!validatePhone(phone)) return;
+    const phoneOk = validatePhone(phone);
+    const industryOk = validateIndustry(industry);
+    if (!phoneOk || !industryOk) return;
 
     setFormState("loading");
 
@@ -38,7 +64,7 @@ export default function VoiceDemoForm() {
       const res = await fetch("/api/demo-call", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, phone, website: honeypot }),
+        body: JSON.stringify({ name, phone, industry, website: honeypot }),
       });
 
       const data = await res.json();
@@ -107,7 +133,7 @@ export default function VoiceDemoForm() {
       />
 
       <div>
-        <label htmlFor="demo-name" className="block text-sm font-medium text-[var(--color-primary)] mb-1.5">
+        <label htmlFor="demo-name" className="block text-sm font-medium text-white mb-1.5">
           Your name
         </label>
         <input
@@ -123,7 +149,7 @@ export default function VoiceDemoForm() {
       </div>
 
       <div>
-        <label htmlFor="demo-phone" className="block text-sm font-medium text-[var(--color-primary)] mb-1.5">
+        <label htmlFor="demo-phone" className="block text-sm font-medium text-white mb-1.5">
           Your phone number
         </label>
         <input
@@ -144,6 +170,37 @@ export default function VoiceDemoForm() {
         {phoneError && (
           <p id="phone-error" role="alert" className="mt-1.5 text-xs text-[var(--color-error)]">
             {phoneError}
+          </p>
+        )}
+      </div>
+
+      <div>
+        <label htmlFor="demo-industry" className="block text-sm font-medium text-white mb-1.5">
+          Your industry
+        </label>
+        <select
+          id="demo-industry"
+          required
+          value={industry}
+          onChange={(e) => {
+            setIndustry(e.target.value);
+            if (industryError) validateIndustry(e.target.value);
+          }}
+          onBlur={() => validateIndustry(industry)}
+          disabled={formState === "loading"}
+          aria-describedby={industryError ? "demo-industry-error" : undefined}
+          className="w-full rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-sm text-white focus:border-[var(--color-accent)] focus:outline-none focus:ring-2 focus:ring-[var(--color-accent-light)] disabled:opacity-50"
+        >
+          <option value="" disabled className="text-[var(--color-primary)]">Select your industry</option>
+          {INDUSTRIES.map((opt) => (
+            <option key={opt.value} value={opt.value} className="text-[var(--color-primary)]">
+              {opt.label}
+            </option>
+          ))}
+        </select>
+        {industryError && (
+          <p id="demo-industry-error" role="alert" className="mt-1.5 text-xs text-red-300">
+            {industryError}
           </p>
         )}
       </div>

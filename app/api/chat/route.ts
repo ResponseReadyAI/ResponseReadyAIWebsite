@@ -20,8 +20,6 @@ Service tiers:
 
 Industries: dental and medical offices, law firms, real estate, home services (HVAC, plumbing, roofing), salons, fitness studios, hospitality.
 
-Founding Client Program: Daniel is personally onboarding the first 10 businesses. 3 spots are taken; 7 remain. Founding Clients get priority pricing locked in permanently.
-
 Contact: daniel@responsereadyai.com
 Discovery call: 20 minutes, no commitment, no hard sell — just a live demo and custom plan.
 
@@ -69,12 +67,9 @@ When it's time to surface the call: "The best next step is a quick 20-minute cal
 
 Once you have their name and phone number, call the send_sms function immediately — do not wait. Then confirm warmly: "Got it — I've sent Daniel your info. He typically follows up within a business day."
 
-Founding Client Program — surface when they're already interested, not as a pressure tactic.
-
 WHAT NOT TO DO:
 - Never quote a price or price range
 - Never promise a specific setup timeline
-- Never claim more than 3 spots are taken
 - Never be pushy
 - Never use filler openers`;
 

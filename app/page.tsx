@@ -7,7 +7,6 @@ import ProcessSection from "@/components/sections/ProcessSection";
 import DemoSection from "@/components/sections/DemoSection";
 import TiersSection from "@/components/sections/TiersSection";
 import AdditionalServicesSection from "@/components/sections/AdditionalServicesSection";
-import FoundingClientSection from "@/components/sections/FoundingClientSection";
 import FAQSection from "@/components/sections/FAQSection";
 import FounderSection from "@/components/sections/FounderSection";
 import FooterCTASection from "@/components/sections/FooterCTASection";
@@ -26,7 +25,6 @@ export default function HomePage() {
         <DemoSection />
         <TiersSection />
         <AdditionalServicesSection />
-        <FoundingClientSection />
         <FAQSection />
         <FounderSection />
         <FooterCTASection />

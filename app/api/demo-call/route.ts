@@ -1,6 +1,19 @@
 import { NextRequest, NextResponse } from "next/server";
 import { isValidUSPhone, formatE164 } from "@/lib/phone";
 
+const AGENT_MAP: Record<string, string> = {
+  medspa:         "agent_16bb56ccf9805c2ad97f12ecfd",
+  roofing:        "agent_ad86e84bd7d52f336187157014",
+  plumber:        "agent_9d4dbf88e4b2f296ca94283e31",
+  auto_detailing: "agent_66b4bdccb18f0c5ac87821b104",
+  auto_dealer:    "agent_fc07f8a7a4253e8ac19005d2e3",
+  hvac:           "agent_40f8738f158e2cf2c80e4998c6",
+  dentist:        "agent_eb66b3d421be151198b9a402aa",
+  town_offices:   "agent_bf691bce50ad2fd121ece77034",
+  boutique:       "agent_4aff35aed2f0c994cd3a34fb41",
+  contractor:     "agent_19fd27320014bded2e20033da1",
+};
+
 // Simple in-memory rate limiting: max 3 requests per IP per hour
 const rateLimitStore = new Map<string, { count: number; resetAt: number }>();
 
@@ -32,7 +45,7 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  let body: { name?: string; phone?: string; website?: string };
+  let body: { name?: string; phone?: string; website?: string; industry?: string };
   try {
     body = await request.json();
   } catch {
@@ -42,7 +55,7 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  const { name, phone, website } = body;
+  const { name, phone, website, industry } = body;
 
   // Honeypot check
   if (website) {
@@ -68,6 +81,16 @@ export async function POST(request: NextRequest) {
 
   const e164Phone = formatE164(phone);
 
+  const normalizedIndustry = (industry ?? "").toLowerCase().trim();
+  const agentId = AGENT_MAP[normalizedIndustry];
+
+  if (!agentId) {
+    return NextResponse.json(
+      { success: false, error: "Please select a valid industry." },
+      { status: 422 }
+    );
+  }
+
   const retellRes = await fetch("https://api.retellai.com/v2/create-phone-call", {
     method: "POST",
     headers: {
@@ -75,21 +98,20 @@ export async function POST(request: NextRequest) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      agent_id: process.env.RETELL_AGENT_ID,
       from_number: process.env.RETELL_FROM_NUMBER,
       to_number: e164Phone,
-      metadata: {
-        visitor_name: name.trim(),
-        source: "website_voice_demo",
+      override_agent_id: agentId,
+      retell_llm_dynamic_variables: {
+        prospect_name: name.trim(),
       },
     }),
   });
 
   if (!retellRes.ok) {
     const err = await retellRes.text();
-    console.error("Retell API error:", err);
+    console.error("Retell API error:", retellRes.status, err);
     return NextResponse.json(
-      { success: false, error: "Failed to initiate call. Please try again." },
+      { success: false, error: `Retell error ${retellRes.status}: ${err}` },
       { status: 500 }
     );
   }

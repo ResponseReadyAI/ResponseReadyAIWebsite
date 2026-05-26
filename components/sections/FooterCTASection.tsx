@@ -1,6 +1,5 @@
 "use client";
 
-import FoundingClientBadge from "@/components/FoundingClientBadge";
 import { openBooking } from "@/components/ui/booking-modal";
 
 export default function FooterCTASection() {
@@ -27,7 +26,6 @@ export default function FooterCTASection() {
           >
             Book a Discovery Call →
           </button>
-          <FoundingClientBadge />
         </div>
       </div>
     </section>

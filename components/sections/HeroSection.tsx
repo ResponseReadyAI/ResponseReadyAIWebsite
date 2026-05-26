@@ -1,6 +1,5 @@
 "use client";
 
-import FoundingClientBadge from "@/components/FoundingClientBadge";
 import { openBooking } from "@/components/ui/booking-modal";
 
 export default function HeroSection() {
@@ -9,9 +8,6 @@ export default function HeroSection() {
       <div className="mx-auto max-w-6xl">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-8 items-end">
           <div className="max-w-2xl">
-            <div className="mb-8">
-              <FoundingClientBadge />
-            </div>
             <h1 className="text-5xl md:text-7xl font-[family-name:var(--font-display)] text-[var(--color-primary)] leading-[1.05] tracking-tight">
               Stop Losing<br />Customers to<br />Voicemail.
             </h1>
