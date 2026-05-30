@@ -3,7 +3,6 @@ import { NAV_LINKS, SITE_NAME, FOUNDER_EMAIL } from "@/lib/constants";
 const LEGAL_LINKS = [
   { label: "Privacy Policy", href: "/privacy" },
   { label: "SMS Consent Policy", href: "/sms-consent" },
-  { label: "Terms of Service", href: "#" },
 ];
 
 export default function Footer() {
@@ -43,7 +42,7 @@ export default function Footer() {
 
         <div className="mt-10 pt-6 border-t border-[var(--color-gray-mid)] flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-xs text-[var(--color-muted)]">
-            © 2025 Response Ready AI. All rights reserved.
+            © 2026 Response Ready AI. All rights reserved.
           </p>
           <ul className="flex flex-wrap gap-x-4 gap-y-1" role="list">
             {LEGAL_LINKS.map((link) => (

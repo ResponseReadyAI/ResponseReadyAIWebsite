@@ -24,7 +24,7 @@ export default function FoundingClientSection() {
           <p>
             We're onboarding our first 10 businesses personally. Every setup is
             handled by our founder — not a template, not a ticket. In exchange,
-            Founding Clients get priority pricing that won't be available once
+            Founding Clients get priority plans that won't be available once
             we're at scale.
           </p>
           <p className="italic text-[var(--color-muted)]">

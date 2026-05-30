@@ -62,7 +62,7 @@ export default function StatStrip() {
           </p>
           <div className="flex items-baseline gap-4 flex-wrap">
             <span className="text-8xl md:text-[9rem] font-[family-name:var(--font-display)] text-white leading-none">
-              {isInView ? "85%" : "0%"}
+              85%
             </span>
             <span className="text-xl md:text-2xl text-white/50 max-w-xs leading-snug">
               of callers who reach voicemail never call back.

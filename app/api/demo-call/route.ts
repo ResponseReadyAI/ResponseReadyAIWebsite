@@ -3,6 +3,7 @@ import { isValidUSPhone, formatE164 } from "@/lib/phone";
 
 const AGENT_MAP: Record<string, string> = {
   medspa:         "agent_16bb56ccf9805c2ad97f12ecfd",
+  insurance:      "agent_c7cca5d0e66943bdc616dfdb5f",
   roofing:        "agent_ad86e84bd7d52f336187157014",
   plumber:        "agent_9d4dbf88e4b2f296ca94283e31",
   auto_detailing: "agent_66b4bdccb18f0c5ac87821b104",

@@ -7,6 +7,14 @@ export const metadata: Metadata = {
   description:
     "Response Ready AI's privacy policy explains what information we collect, how we use it, and your choices — including our SMS messaging program.",
   alternates: { canonical: "https://responsereadyai.com/privacy" },
+  openGraph: {
+    title: "Privacy Policy — Response Ready AI",
+    description:
+      "Response Ready AI's privacy policy explains what information we collect, how we use it, and your choices — including our SMS messaging program.",
+    url: "https://responsereadyai.com/privacy",
+    siteName: "Response Ready AI",
+    type: "website",
+  },
 };
 
 export default function PrivacyPage() {

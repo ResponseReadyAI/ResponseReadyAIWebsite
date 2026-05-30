@@ -15,7 +15,7 @@ const INDUSTRIES = [
   { value: "auto_dealer", label: "Auto Dealership" },
   { value: "hvac", label: "HVAC" },
   { value: "dentist", label: "Dental" },
-  { value: "town_offices", label: "Town / Municipal Offices" },
+  { value: "insurance", label: "Insurance" },
   { value: "boutique", label: "Retail Boutique" },
   { value: "contractor", label: "General Contractor" },
 ];

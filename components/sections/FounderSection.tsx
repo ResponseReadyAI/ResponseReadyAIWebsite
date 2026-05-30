@@ -21,7 +21,7 @@ export default function FounderSection() {
             If your business runs on phone calls, you can&rsquo;t afford to miss
             them. Response Ready AI makes sure you don&rsquo;t.
           </p>
-          <footer className="pt-6 border-t border-white/10">
+          <footer className="pt-4">
             <p className="text-sm font-semibold text-white">
               — Daniel, Founder of Response Ready AI
             </p>

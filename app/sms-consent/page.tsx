@@ -7,6 +7,14 @@ export const metadata: Metadata = {
   description:
     "How Response Ready AI obtains consent before sending SMS, our verbal opt-in script, and how to stop messages.",
   alternates: { canonical: "https://responsereadyai.com/sms-consent" },
+  openGraph: {
+    title: "SMS Consent & Messaging Policy — Response Ready AI",
+    description:
+      "How Response Ready AI obtains consent before sending SMS, our verbal opt-in script, and how to stop messages.",
+    url: "https://responsereadyai.com/sms-consent",
+    siteName: "Response Ready AI",
+    type: "website",
+  },
 };
 
 export default function SmsConsentPage() {

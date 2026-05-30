@@ -9,7 +9,7 @@ export default function HeroSection() {
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-8 items-end">
           <div className="max-w-2xl">
             <h1 className="text-5xl md:text-7xl font-[family-name:var(--font-display)] text-[var(--color-primary)] leading-[1.05] tracking-tight">
-              Stop Losing<br />Customers to<br />Voicemail.
+              Saving Your<br />Callers from<br />Voicemail.
             </h1>
             <p className="mt-8 text-lg md:text-xl text-[var(--color-muted)] leading-relaxed max-w-lg">
               Every call answered. Every appointment booked. Every lead captured.
