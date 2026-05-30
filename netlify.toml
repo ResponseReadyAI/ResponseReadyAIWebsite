@@ -7,3 +7,8 @@
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
+
+# Subdomain setup for outbound.responsereadyai.com:
+# 1. Add a CNAME record in DNS: outbound.responsereadyai.com → <your-netlify-site>.netlify.app
+# 2. In Netlify dashboard → Domain settings → Add domain alias: outbound.responsereadyai.com
+# 3. The Next.js middleware (middleware.ts) handles rewriting outbound.* traffic to /outbound

@@ -6,11 +6,14 @@ import { cn } from "@/lib/utils";
 import { AnimatePresence, motion, type Variants } from "framer-motion";
 import { MessageSquare, Send, X, Zap } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
 
 interface Message {
   role: "agent" | "user";
   content: string;
 }
+
+type Vertical = "medspa" | "insurance" | undefined;
 
 const containerVariants: Variants = {
   hidden: { opacity: 0, y: 20, scale: 0.95, transformOrigin: "bottom right" },
@@ -37,15 +40,29 @@ const messageVariants: Variants = {
   },
 };
 
-const GREETING: Message = {
-  role: "agent",
-  content:
-    "Hey — I'm Devon, the AI agent for Response Ready AI. Before anything else, who am I speaking with?",
+const GREETINGS: Record<NonNullable<Vertical> | "default", string> = {
+  default:   "Hey — I'm Devon, the AI agent for Response Ready AI. Before anything else, who am I speaking with?",
+  medspa:    "Hey — I'm Devon, a demo AI receptionist from Response Ready AI. I help med spas fill their schedule without ever missing a call. Who am I speaking with?",
+  insurance: "Hey — I'm Devon, a demo AI agent from Response Ready AI. I help insurance agencies respond to every inquiry instantly, even after hours. Who am I speaking with?",
 };
 
+function getGreeting(vertical: Vertical): Message {
+  return {
+    role: "agent",
+    content: GREETINGS[vertical ?? "default"],
+  };
+}
+
 export function FloatingChatWidget() {
+  const pathname = usePathname();
+  const vertical: Vertical = pathname.startsWith("/medspa")
+    ? "medspa"
+    : pathname.startsWith("/insurance")
+    ? "insurance"
+    : undefined;
+
   const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState<Message[]>([GREETING]);
+  const [messages, setMessages] = useState<Message[]>([getGreeting(vertical)]);
   const [input, setInput] = useState("");
   const [isTyping, setIsTyping] = useState(false);
   const bottomRef = useRef<HTMLDivElement>(null);
@@ -75,7 +92,11 @@ export function FloatingChatWidget() {
       const res = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: text, history: history.slice(0, -1) }),
+        body: JSON.stringify({
+          message: text,
+          history: history.slice(0, -1),
+          vertical,
+        }),
       });
 
       if (!res.ok) throw new Error("API error");
@@ -239,7 +260,7 @@ export function FloatingChatWidget() {
         whileHover={{ scale: 1.06 }}
         whileTap={{ scale: 0.94 }}
         onClick={toggleOpen}
-        aria-label={isOpen ? "Close chat" : "Chat with Riley"}
+        aria-label={isOpen ? "Close chat" : "Chat with Devon"}
         className={cn(
           "group relative flex h-14 w-14 cursor-pointer items-center justify-center rounded-full shadow-2xl transition-all duration-300",
           isOpen
